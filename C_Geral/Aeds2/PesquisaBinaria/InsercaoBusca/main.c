@@ -11,7 +11,6 @@ typedef struct No{
 
 void inicializar_arvore(No **var){
     *var = NULL;
-
 }
 
 //alocação,menores valores que o nó serão alocados na esquerda,maiores a direita;
