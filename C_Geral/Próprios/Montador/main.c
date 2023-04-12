@@ -26,6 +26,8 @@ int main(void){
     while(fgets(conteudo,25,fp)){
         p = strtok(conteudo,", ");
             if(!(strcmp(p,"add"))){
+                TipoR(p,fpS,MatrizBinario,vetorArquivo,"000");
+                /*
                 while(p!=NULL){
                     if(aux==-1){
                         fprintf(fpS,"0000000");
@@ -57,7 +59,7 @@ int main(void){
                     aux+=1;
                     p = strtok(NULL," ,");
 
-                }
+                }*/
 
                 
 

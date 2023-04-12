@@ -59,3 +59,38 @@ void TipoRpreencher_rs2(char *vetor,char *vetor_binario){
         contador+=1;
     }
 }
+void TipoR(char *p,FILE *fpS,char **MatrizBinario,char *vetorArquivo,char *funct3){
+    int aux =-1;
+     while(p!=NULL){
+                    if(aux==-1){
+                        fprintf(fpS,"0000000");
+                        //funct 7 Tipo R
+                    }else{
+                        p = remover_caractere(p);
+                        //elimina a primeira posição de p,no caso x
+                        if(aux==0){
+                            vetorArquivo = Rs_converte(p);
+                            MatrizBinario[aux] = vetorArquivo;
+                            //printf("\t%s\n",MatrizBinario[aux]);
+                            //armazena rd
+                        }else if(aux==1){
+                            vetorArquivo = Rs_converte(p);
+                            MatrizBinario[aux] = vetorArquivo;
+                            //armazena rs1
+                        }else if(aux==2){
+                            vetorArquivo = Rs_converte(p);
+                            MatrizBinario[aux] = vetorArquivo;
+                            //armazena rs2
+                            fprintf(fpS,MatrizBinario[aux]);
+                            fprintf(fpS,MatrizBinario[aux-1]);
+                            fprintf(fpS,"000");
+                            fprintf(fpS,MatrizBinario[aux-2]);
+                            fprintf(fpS,"0110011\n");
+                        }
+                    }
+
+                    aux+=1;
+                    p = strtok(NULL," ,");
+
+                }
+}
