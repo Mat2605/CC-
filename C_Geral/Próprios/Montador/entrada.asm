@@ -1,3 +1,2 @@
-add x2, x0, x1
-add x4, x2, x3
-xor x4, x2, x3
+add x28, x27, x29
+xor x12, x7, x9
