@@ -1,15 +1,13 @@
 #include "funct.h"
 int main(void){
-    int aux;
+    int aux,resposta;
     //controla a sequência de armazenamento dos registradores,ajuda na inicialização
     //da matriz
+    FILE *fp,*fpS;
     char **MatrizBinario,conteudo[25],*nomeArquivo,*vetorArquivo,*p;
     //Armazenará o conteúdo em binário;
     //armazena o conteúdo do arquivo.
     //Recebe o conteúdo do arquivo
-    //printf("\t\t||Digite o nome do arquivo: \n");
-    //scanf("%s",&nomeArquivo);
-    FILE *fp,*fpS;
     fp = fopen("entrada.asm","r");
     fpS = fopen("saida.asm","w");
     //Alocação Dinâmica da Matriz
@@ -30,10 +28,16 @@ int main(void){
             }else if(!(strcmp(p,"xor"))){
                 TipoR(p,fpS,MatrizBinario,vetorArquivo,"100");
 
+            }else if(!(strcmp(p,"sll"))){
+                TipoR(p,fpS,MatrizBinario,vetorArquivo,"001");
+
+            }else if(!(strcmp(p,"addi"))){
+                TipoI(p,fpS,MatrizBinario,vetorArquivo,"000","0010011");
             }
             //aux = -1;
         
     }
+    
     fclose(fp);
     fclose(fpS);
     return 0;
