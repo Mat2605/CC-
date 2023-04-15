@@ -1,5 +1,6 @@
 #include "funct.h"
-char* Imediato_converte(char *variavel){
+//Converte o Imediato de instruções para binário,valores negativos e positivos
+char* converteImediato(char *variavel){
     int decimal,rI,aux = 0, negativo = 0;
     char *vetor_binario;
     vetor_binario = (char*)malloc(sizeof(char)*12);
@@ -20,7 +21,6 @@ char* Imediato_converte(char *variavel){
         }else{
             vetor_binario[aux] = '0';
         }
-        //printf("\tVetor ==> %c Posicao ==> %d\n",vetor_binario[aux],aux);
         aux+=1;
     }
 
@@ -28,13 +28,15 @@ char* Imediato_converte(char *variavel){
         // adiciona o bit de sinal (1 para negativo)
         vetor_binario[0] = '1';
     }
-
+    vetor_binario[12] = '\0';
     return vetor_binario;
 }
+////////////////////////////////////////////////////////
 char* remover_caractere(char *p){
     memmove(p,p+1,strlen(p));
     return p;
 }
+//Tira o 'x' dos registradores,restando apenas os números para conversão
 int contagem_linhas(FILE *fp){
     char contagem;
     int linhas = 1;
@@ -67,91 +69,86 @@ char* Rs_converte(char *variavel){
     }
     return vetor_binario;
 }
-void  TipoRpreencher_rd(char *vetor,char *vetor_binario){
-    int contador = 0;
-    //vai de 1 até 5
-    for(int i = 7;i<=11;i++){
-        vetor[i] = vetor_binario[contador];
-        contador+=1;
+void escreve_saida(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode) {
+    fprintf(fpS, MatrizBinario[2]);
+    fprintf(fpS, MatrizBinario[1]);
+    fprintf(fpS, funct3);
+    fprintf(fpS, MatrizBinario[0]);
+    fprintf(fpS, opcode);
+    fprintf(fpS, "\n");
+}
+
+void TipoR(char* p, FILE* fpS, char** MatrizBinario, char* funct3) {
+    int aux = -1;
+    while (p != NULL) {
+        if (aux == -1) {
+            fprintf(fpS, "0000000");
+            //funct 7 Tipo R
+        } else {
+            p = remover_caractere(p);
+            //elimina a primeira posição de p,no caso x
+            char* valor = Rs_converte(p);
+            if (aux == 0) {
+                //armazena rd
+                MatrizBinario[aux] = valor;
+            } else if (aux == 1) {
+                //armazena rs1
+                MatrizBinario[aux] = valor;
+            } else if (aux == 2) {
+                //armazena rs2
+                MatrizBinario[aux] = valor;
+                escreve_saida(fpS, MatrizBinario, funct3, "0110011");
+                return;
+            }
+        }
+        aux += 1;
+        p = strtok(NULL, " ,");
     }
 }
-void TipoRpreencher_rs1(char *vetor,char *vetor_binario){
-    int contador = 0;
-    //vai de 1 até 5
-    for(int i = 15;i<=19;i++){
-        vetor[i] = vetor_binario[contador];
-        contador+=1;
-    }
 
-}
-void TipoRpreencher_rs2(char *vetor,char *vetor_binario){
-    int contador = 0;
-    //vai de 1 até 5
-    for(int i = 19;i<=24;i++){
-        vetor[i] = vetor_binario[contador];
-        contador+=1;
-    }
-}
-void TipoR(char *p,FILE *fpS,char **MatrizBinario,char *vetorArquivo,char *funct3){
-    int aux =-1;
-     while(p!=NULL){
-                    if(aux==-1){
-                        fprintf(fpS,"0000000");
-                        //funct 7 Tipo R
-                    }else{
-                        p = remover_caractere(p);
-                        //elimina a primeira posição de p,no caso x
-                        if(aux==0){
-                            vetorArquivo = Rs_converte(p);
-                            MatrizBinario[aux] = vetorArquivo;
-                            //printf("\t%s\n",MatrizBinario[aux]);
-                            //armazena rd
-                        }else if(aux==1){
-                            vetorArquivo = Rs_converte(p);
-                            MatrizBinario[aux] = vetorArquivo;
-                            //armazena rs1
-                        }else if(aux==2){
-                            vetorArquivo = Rs_converte(p);
-                            MatrizBinario[aux] = vetorArquivo;
-                            //armazena rs2
-                            fprintf(fpS,MatrizBinario[aux]);
-                            fprintf(fpS,MatrizBinario[aux-1]);
-                            fprintf(fpS,funct3);
-                            fprintf(fpS,MatrizBinario[aux-2]);
-                            fprintf(fpS,"0110011\n");
-                        }
-                    }
-
-                    aux+=1;
-                    p = strtok(NULL," ,");
-
-                }
-}
-void TipoI(char *p,FILE *fpS,char **MatrizBinario,char *vetorArquivo,char *funct3,char *opcode){
+void TipoI(char* p, FILE* fpS, char** MatrizBinario, char* funct3, char* opcode) {
     int aux = 0;
-    p = strtok(NULL," ,");
+    p = strtok(NULL, " ,");
     //avança na string
-    while(p!=NULL){
-        if(aux==0){
+    while (p != NULL) {
+        if (aux == 0) {
             //recebe rd
             p = remover_caractere(p);
-            vetorArquivo = Rs_converte(p);
-            MatrizBinario[aux] = vetorArquivo;
-        }else if(aux==1){
+            MatrizBinario[aux] = Rs_converte(p);
+        } else if (aux == 1) {
             //recebe rs1
             p = remover_caractere(p);
-            vetorArquivo = Rs_converte(p);
-            MatrizBinario[aux] = vetorArquivo;
+            MatrizBinario[aux] = Rs_converte(p);
+        } else if (aux == 2) {
+            //recebe imediato
+            MatrizBinario[aux] = converteImediato(p);
+            //printf("\tMatrizBinario[%d] ==> %s\n",aux,MatrizBinario[aux]);
+            //printf("\tMatrizBinario[%d] ==> %s\n",aux-1,MatrizBinario[aux-1]);
+            //printf("\tMatrizBinario[%d] ==> %s\n",aux-2,MatrizBinario[aux-2]);
+            escreve_saida(fpS, MatrizBinario, funct3, opcode);
+            return;
+        }
+        aux += 1;
+        p = strtok(NULL, " ,");
+    }
+}
+void TipoILwSw(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode){
+    int aux = 0;
+    p = strtok(NULL," ,()");
+    while(p!=NULL){
+        if(aux==0){
+            p = remover_caractere(p);
+            MatrizBinario[aux] = Rs_converte(p);
+        }else if(aux==1){
+            MatrizBinario[aux+1] = converteImediato(p);
         }else if(aux==2){
-            p = Imediato_converte(p);
-            fprintf(fpS,p);
-            fprintf(fpS,MatrizBinario[aux-1]);
-            fprintf(fpS,funct3);
-            fprintf(fpS,MatrizBinario[aux-2]);
-            fprintf(fpS,opcode);
-            fprintf(fpS,"\n");
+    
+            p = remover_caractere(p);
+            MatrizBinario[aux-1] = Rs_converte(p);
+           
+            escreve_saida(fpS,MatrizBinario,funct3,opcode);
         }
         aux+=1;
-        p = strtok(NULL," ,");
+        p = strtok(NULL," ,()");
     }
 }

@@ -1,10 +1,11 @@
 #include "funct.h"
+#define reg 3
 int main(void){
     int aux,resposta;
     //controla a sequência de armazenamento dos registradores,ajuda na inicialização
     //da matriz
     FILE *fp,*fpS;
-    char **MatrizBinario,conteudo[25],*nomeArquivo,*vetorArquivo,*p;
+    char **MatrizBinario,conteudo[25],*nomeArquivo,*p;
     //Armazenará o conteúdo em binário;
     //armazena o conteúdo do arquivo.
     //Recebe o conteúdo do arquivo
@@ -15,7 +16,7 @@ int main(void){
     MatrizBinario = (char **)malloc(aux * sizeof(char *));
     //linhas
     for(int i = 0;i<5;i++){
-        MatrizBinario[i] = (char*)malloc(sizeof(char)*3);
+        MatrizBinario[i] = (char*)malloc(sizeof(char)*reg);
         //colunas
     }
     //
@@ -24,17 +25,21 @@ int main(void){
     while(fgets(conteudo,25,fp)){
         p = strtok(conteudo,", ");
             if(!(strcmp(p,"add"))){
-                TipoR(p,fpS,MatrizBinario,vetorArquivo,"000");
+                TipoR(p,fpS,MatrizBinario,"000");
             }else if(!(strcmp(p,"xor"))){
-                TipoR(p,fpS,MatrizBinario,vetorArquivo,"100");
+                TipoR(p,fpS,MatrizBinario,"100");
 
             }else if(!(strcmp(p,"sll"))){
-                TipoR(p,fpS,MatrizBinario,vetorArquivo,"001");
+                TipoR(p,fpS,MatrizBinario,"001");
 
             }else if(!(strcmp(p,"addi"))){
-                TipoI(p,fpS,MatrizBinario,vetorArquivo,"000","0010011");
+                TipoI(p,fpS,MatrizBinario,"000","0010011");
+            }else if(!(strcmp(p,"lw"))){
+                TipoILwSw(p,fpS,MatrizBinario,"010","0000011");
+            }else if(!(strcmp(p,"sw"))){
+                TipoILwSw(p,fpS,MatrizBinario,"010"," 0100011");
+
             }
-            //aux = -1;
         
     }
     
