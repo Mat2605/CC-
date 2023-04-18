@@ -1,4 +1,31 @@
 #include "funct.h"
+void OpcaoLeitura(FILE *fp){
+    char nomeArquivo[20],ViaTeclado[30];
+    int resposta,tamanho = 0;
+    printf("\tDigite a opção desejada:\n");
+    printf("\t[1]==>Leitura de um Arquivo já existente.|");
+    printf("\n\t[2]==>Digitar o conteudo via teclado.|");
+    scanf("%d",&resposta);
+    if(resposta==1){
+        printf("\tDigite o nome do arquivo:");
+        printf("%s",&nomeArquivo);
+        fp = fopen(nomeArquivo,"r");
+    }else if(resposta==2){
+        while(1){
+            fgets(ViaTeclado,sizeof(ViaTeclado),stdin);
+            if(strlen(ViaTeclado)==1){
+                break;
+            }
+            fprintf(fp,"%s",ViaTeclado);
+            tamanho += strlen(ViaTeclado); 
+
+        }
+        fclose(fp);
+        fp = fopen("entrada.asm", "r");
+    }else{
+        printf("\nOpcao Invalida!\n");
+    }
+}
 //Converte o Imediato de instruções para binário,valores negativos e positivos
 char* converteImediato(char *variavel){
     int decimal,rI,aux = 0, negativo = 0;
