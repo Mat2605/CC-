@@ -1,31 +1,53 @@
 #include "funct.h"
-void OpcaoLeitura(FILE *fp){
-    char nomeArquivo[20],ViaTeclado[30];
-    int resposta,tamanho = 0;
-    printf("\tDigite a opção desejada:\n");
-    printf("\t[1]==>Leitura de um Arquivo já existente.|");
-    printf("\n\t[2]==>Digitar o conteudo via teclado.|");
-    scanf("%d",&resposta);
-    if(resposta==1){
-        printf("\tDigite o nome do arquivo:");
-        printf("%s",&nomeArquivo);
-        fp = fopen(nomeArquivo,"r");
-    }else if(resposta==2){
-        while(1){
-            fgets(ViaTeclado,sizeof(ViaTeclado),stdin);
-            if(strlen(ViaTeclado)==1){
-                break;
-            }
-            fprintf(fp,"%s",ViaTeclado);
-            tamanho += strlen(ViaTeclado); 
+void PrintarArquivo(char*nomeArquivo) {
+    FILE *file = fopen(nomeArquivo, "r");
+    char c;
+    
 
+    if (file) {
+        while ((c = fgetc(file)) != EOF) {
+            printf("%c", c);
         }
-        fclose(fp);
-        fp = fopen("entrada.asm", "r");
-    }else{
-        printf("\nOpcao Invalida!\n");
+        fclose(file);
+    } else {
+        printf("Erro ao abrir o arquivo!\n");
     }
 }
+void OpcaoLeitura(FILE **fp) {
+    char nomeArquivo[50], ViaTeclado;
+    int resposta, tamanho = 0;
+
+    printf("\t|Digite a opção desejada:\n");
+    printf("\t|[1]==>Leitura de um Arquivo já existente.|");
+    printf("\n\t|[2]==>Digitar o conteudo via teclado.|\n");
+    scanf("%d",&resposta);
+
+    if (resposta == 1) {
+        printf("\tDigite o nome do arquivo:");
+        scanf("%s", nomeArquivo);
+        *fp = fopen(nomeArquivo, "r");
+        if (*fp == NULL) {
+            printf("Erro ao abrir o arquivo %s\n", nomeArquivo);
+            return;
+        }
+    } else if (resposta == 2) {
+        *fp = fopen("entrada.txt","w");
+        printf("\tDigite as Instruções: \n");
+        getchar();
+        while((ViaTeclado=getchar())!=EOF){
+            putc(ViaTeclado,*fp);
+
+        }
+        fclose(*fp);
+        *fp = fopen("entrada.txt","r");
+    }else{
+        printf("\nOpcao Invalida!\n");
+        exit(1);
+
+    }
+}
+
+
 //Converte o Imediato de instruções para binário,valores negativos e positivos
 char* converteImediato(char *variavel){
     int decimal,rI,aux = 0, negativo = 0;
@@ -105,11 +127,11 @@ void escreve_saida(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode) 
     fprintf(fpS, "\n");
 }
 
-void TipoR(char* p, FILE* fpS, char** MatrizBinario, char* funct3) {
+void TipoR(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *funct7,char *opcode) {
     int aux = -1;
     while (p != NULL) {
         if (aux == -1) {
-            fprintf(fpS, "0000000");
+            fprintf(fpS, funct7);
             //funct 7 Tipo R
         } else {
             p = remover_caractere(p);
@@ -124,7 +146,7 @@ void TipoR(char* p, FILE* fpS, char** MatrizBinario, char* funct3) {
             } else if (aux == 2) {
                 //armazena rs2
                 MatrizBinario[aux] = valor;
-                escreve_saida(fpS, MatrizBinario, funct3, "0110011");
+                escreve_saida(fpS, MatrizBinario, funct3, opcode);
                 return;
             }
         }
@@ -149,9 +171,6 @@ void TipoI(char* p, FILE* fpS, char** MatrizBinario, char* funct3, char* opcode)
         } else if (aux == 2) {
             //recebe imediato
             MatrizBinario[aux] = converteImediato(p);
-            //printf("\tMatrizBinario[%d] ==> %s\n",aux,MatrizBinario[aux]);
-            //printf("\tMatrizBinario[%d] ==> %s\n",aux-1,MatrizBinario[aux-1]);
-            //printf("\tMatrizBinario[%d] ==> %s\n",aux-2,MatrizBinario[aux-2]);
             escreve_saida(fpS, MatrizBinario, funct3, opcode);
             return;
         }
@@ -178,4 +197,48 @@ void TipoILwSw(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode)
         aux+=1;
         p = strtok(NULL," ,()");
     }
+}
+void TipoB(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode){
+    int aux = 0;
+    p = strtok(NULL," ,");
+    while(p!=NULL){
+        if(aux==0){
+            p = remover_caractere(p);
+            MatrizBinario[aux] = Rs_converte(p);
+        }else if(aux==1){
+            p = remover_caractere(p);
+            MatrizBinario[aux] = Rs_converte(p);
+        }else if(aux==2){
+            if(p[0]=='x'){
+                p = remover_caractere(p);
+                MatrizBinario[aux] = Rs_converte(p);
+            }else{
+                MatrizBinario[aux] = converteImediato(p);
+            }
+            printf("\tMatriz Binário Imediato ==> %s\n",MatrizBinario[aux]);
+            escreve_saidaB(fpS,MatrizBinario,funct3,opcode);
+            
+        }
+        aux +=1;
+        p = strtok(NULL," ,");
+    }
+
+
+}
+void escreve_saidaB(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode){
+    int aux = 2;
+    printf("\tMatriz Binário Imediato ==> %s\n",MatrizBinario[aux]);
+    fputc(MatrizBinario[aux][11],fpS);
+    for(int i = 10;i>=5;i--){
+        fputc(MatrizBinario[aux][i],fpS);
+    }
+    fprintf(fpS,MatrizBinario[aux-1]);
+    fprintf(fpS,MatrizBinario[aux-2]);
+    fprintf(fpS,funct3);
+    for(int i = 4;i>=1;i--){
+        fputc(MatrizBinario[aux][i],fpS);
+    }
+    fprintf(fpS,opcode);
+
+    
 }
