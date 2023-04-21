@@ -12,7 +12,7 @@ int main(void) {
     // processa as instruções
     //fp = fopen("entrada.asm","r");
     OpcaoLeitura(&fp);
-    fpS = fopen("saida.asm", "w");
+    fpS = fopen("saida.txt", "w");
     aux = contagem_linhas(fp);
     MatrizBinario = (char **)malloc(aux * sizeof(char *));
     for(int i = 0; i < aux; i++) {
@@ -64,7 +64,7 @@ int main(void) {
 
     fclose(fp);
     fclose(fpS);
-    PrintarArquivo("saida.asm");
+    PrintarArquivo("saida.txt");
 
     return 0;
 }

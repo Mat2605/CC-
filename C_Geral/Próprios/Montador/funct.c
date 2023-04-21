@@ -2,8 +2,6 @@
 void PrintarArquivo(char*nomeArquivo) {
     FILE *file = fopen(nomeArquivo, "r");
     char c;
-    
-
     if (file) {
         while ((c = fgetc(file)) != EOF) {
             printf("%c", c);
@@ -16,7 +14,7 @@ void PrintarArquivo(char*nomeArquivo) {
 void OpcaoLeitura(FILE **fp) {
     char nomeArquivo[50], ViaTeclado;
     int resposta, tamanho = 0;
-
+    printf("\t\t\t Montador\n");
     printf("\t|Digite a opção desejada:\n");
     printf("\t|[1]==>Leitura de um Arquivo já existente.|");
     printf("\n\t|[2]==>Digitar o conteudo via teclado.|\n");
@@ -80,12 +78,12 @@ char* converteImediato(char *variavel){
     vetor_binario[12] = '\0';
     return vetor_binario;
 }
-////////////////////////////////////////////////////////
+//Remove o 'x' dos registradores
 char* remover_caractere(char *p){
     memmove(p,p+1,strlen(p));
     return p;
 }
-//Tira o 'x' dos registradores,restando apenas os números para conversão
+//Conta as linhas do arquivo
 int contagem_linhas(FILE *fp){
     char contagem;
     int linhas = 1;
@@ -118,6 +116,37 @@ char* Rs_converte(char *variavel){
     }
     return vetor_binario;
 }
+
+char* desloca_bit_direita(char *binario){
+    int len = strlen(binario);
+    char *novo_binario = (char*) malloc((len + 1) * sizeof(char));
+    novo_binario[len] = '\0';
+    novo_binario[0] = '0';
+    for (int i = 1; i < len; i++) {
+        novo_binario[i] = binario[i-1];
+    }
+    return novo_binario;
+}
+void escreve_saidaB(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode){
+    int aux = 2;
+    
+    //bit 12 do imediato
+    fputc(MatrizBinario[aux][0],fpS);
+    for(int i = 2;i<=6;i++){
+        fputc(MatrizBinario[aux][i],fpS);
+    }
+    fprintf(fpS,MatrizBinario[aux-1]);
+    fprintf(fpS,MatrizBinario[aux-2]);
+    fprintf(fpS,funct3);
+    for(int i = 7;i<=11;i++){
+        fputc(MatrizBinario[aux][i],fpS);
+    }
+    //Bit 11 do imediato
+    fputc(MatrizBinario[aux][1],fpS);
+    fprintf(fpS,opcode);
+    
+    fputc('\n',fpS);  
+}
 void escreve_saida(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode) {
     fprintf(fpS, MatrizBinario[2]);
     fprintf(fpS, MatrizBinario[1]);
@@ -126,7 +155,6 @@ void escreve_saida(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode) 
     fprintf(fpS, opcode);
     fprintf(fpS, "\n");
 }
-
 void TipoR(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *funct7,char *opcode) {
     int aux = -1;
     while (p != NULL) {
@@ -211,11 +239,12 @@ void TipoB(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode){
         }else if(aux==2){
             if(p[0]=='x'){
                 p = remover_caractere(p);
-                MatrizBinario[aux] = Rs_converte(p);
+                p = converteImediato(p);
+                MatrizBinario[aux] = desloca_bit_direita(p);
             }else{
-                MatrizBinario[aux] = converteImediato(p);
+                p = converteImediato(p);
+                MatrizBinario[aux] = desloca_bit_direita(p);
             }
-            printf("\tMatriz Binário Imediato ==> %s\n",MatrizBinario[aux]);
             escreve_saidaB(fpS,MatrizBinario,funct3,opcode);
             
         }
@@ -224,21 +253,4 @@ void TipoB(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode){
     }
 
 
-}
-void escreve_saidaB(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode){
-    int aux = 2;
-    printf("\tMatriz Binário Imediato ==> %s\n",MatrizBinario[aux]);
-    fputc(MatrizBinario[aux][11],fpS);
-    for(int i = 10;i>=5;i--){
-        fputc(MatrizBinario[aux][i],fpS);
-    }
-    fprintf(fpS,MatrizBinario[aux-1]);
-    fprintf(fpS,MatrizBinario[aux-2]);
-    fprintf(fpS,funct3);
-    for(int i = 4;i>=1;i--){
-        fputc(MatrizBinario[aux][i],fpS);
-    }
-    fprintf(fpS,opcode);
-
-    
 }

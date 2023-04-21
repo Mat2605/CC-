@@ -1,3 +1,2 @@
-Ol , tudo bem?
-Sim, estou bem, obrigado!
-Que bom! Eu tamb‚m estou bem.
+add x4,x3,x2
+xor x5,x4,x3
