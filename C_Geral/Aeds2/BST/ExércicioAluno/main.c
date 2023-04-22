@@ -106,7 +106,7 @@ int main(void){
     char conteudo[50],*p,caracteres[30];
     int contador = 0,nn,mat,count = 0;
     FILE *fp;
-    fp = fopen("entrada.asm","r");
+    fp = fopen("entrada.txt","r");
     while(fgets(conteudo,50,fp)){
         p = strtok(conteudo," ,.-;");
         while(p!=NULL){

@@ -1,2 +1,2 @@
-bne x11,x10,2000
-beq x11,x10,x12
+add x2,x3,x4
+xor x3,x4,x6

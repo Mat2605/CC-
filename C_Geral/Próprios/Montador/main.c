@@ -43,17 +43,17 @@ int main(void) {
         }else if(!(strcmp(p, "ori"))){
             TipoI(p, fpS, MatrizBinario, "110", "0010011");
         } else if (!(strcmp(p, "lw"))) {
-            TipoILwSw(p, fpS, MatrizBinario, "010", "0000011");
+            TipoILw(p, fpS, MatrizBinario, "010", "0000011");
         }else if(!(strcmp(p, "lb"))){
-            TipoILwSw(p, fpS, MatrizBinario, "000", "0000011");
+            TipoILw(p, fpS, MatrizBinario, "000", "0000011");
         }else if(!(strcmp(p, "lh"))){
-            TipoILwSw(p, fpS, MatrizBinario, "001", "0000011");
+            TipoILw(p, fpS, MatrizBinario, "001", "0000011");
         }else if (!(strcmp(p, "sw"))) {
-            TipoILwSw(p, fpS, MatrizBinario, "010", "0100011");
+            TipoISw(p, fpS, MatrizBinario, "010", "0100011");
         }else if(!(strcmp(p, "sb"))){
-            TipoILwSw(p, fpS, MatrizBinario, "000", "0100011");
+            TipoISw(p, fpS, MatrizBinario, "000", "0100011");
         }else if(!(strcmp(p, "sh"))){
-            TipoILwSw(p, fpS, MatrizBinario, "010,", "0100011");
+            TipoISw(p, fpS, MatrizBinario, "010,", "0100011");
         }else if(!(strcmp(p,"bne"))){
             TipoB(p,fpS,MatrizBinario,"001","1100011");
         }else if(!(strcmp(p,"beq"))){

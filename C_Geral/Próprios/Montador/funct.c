@@ -206,7 +206,7 @@ void TipoI(char* p, FILE* fpS, char** MatrizBinario, char* funct3, char* opcode)
         p = strtok(NULL, " ,");
     }
 }
-void TipoILwSw(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode){
+void TipoILw(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode){
     int aux = 0;
     p = strtok(NULL," ,()");
     while(p!=NULL){
@@ -252,5 +252,43 @@ void TipoB(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode){
         p = strtok(NULL," ,");
     }
 
+
+}
+void TipoISw(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode){
+    int aux = 0;
+    p = strtok(NULL," ,()");
+    while(p!=NULL){
+        if(aux==0){
+            p = remover_caractere(p);
+            MatrizBinario[aux] = Rs_converte(p);
+        }else if(aux==1){
+            MatrizBinario[aux+1] = converteImediato(p);
+        }else if(aux==2){
+    
+            p = remover_caractere(p);
+            MatrizBinario[aux-1] = Rs_converte(p);
+           
+            escreve_saidaSw(fpS,MatrizBinario,funct3,opcode);
+        }
+        aux+=1;
+        p = strtok(NULL," ,()");
+    }
+
+}
+
+void escreve_saidaSw(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode){
+        int aux = 2;
+        for(int i = 0;i<=6;i++){
+            fputc(MatrizBinario[aux][i],fpS);
+        }
+        printf("\n");
+        fprintf(fpS,MatrizBinario[aux-2]);
+        fprintf(fpS,MatrizBinario[aux-1]);
+        fprintf(fpS,funct3);
+        for(int i = 7;i<=11;i++){
+            fputc(MatrizBinario[aux][i],fpS);
+        }
+        fprintf(fpS,opcode);
+        fprintf(fpS,"\n");
 
 }

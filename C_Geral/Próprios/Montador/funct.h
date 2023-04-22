@@ -30,13 +30,16 @@ void TipoR(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *funct7,char
 void TipoI(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode);
 
 //Utilizada especificamente para instruções tipo Load e Store,já que apresentam uma gráfia diferente
-void TipoILwSw(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode);
+void TipoILw(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode);
 
+void TipoISw(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode);
 //Utilizada para beq,bne,Tipos Sb
 void TipoB(char *p,FILE *fpS,char **MatrizBinario,char *funct3,char *opcode);
 
-//Utilizado para escrever no arquivo,as instruções R,I em binário
+//Utilizado para escrever no arquivo as instruções R,I,Lw em binário
 void escreve_saida(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode);
+//Utilizado para escrever no arquivo as instruções de store em binário
+void escreve_saidaSw(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode);
 
-//Utilizado para escrever no arquivo,as instruções SB em binário
+//Utilizado para escrever no arquivo as instruções SB em binário
 void escreve_saidaB(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode);
