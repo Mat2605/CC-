@@ -11,12 +11,12 @@ void PrintarArquivo(char*nomeArquivo) {
         printf("Erro ao abrir o arquivo!\n");
     }
 }
-void OpcaoLeitura(FILE **fp) {
-    char nomeArquivo[50], ViaTeclado;
+void OpcaoLeitura(FILE **fp,FILE **fpS) {
+    char nomeArquivo[15], ViaTeclado,nomeArquivoSaida[15];
     int resposta, tamanho = 0;
     printf("\t\t\t Montador\n");
-    printf("\t|Digite a opção desejada:\n");
-    printf("\t|[1]==>Leitura de um Arquivo já existente.|");
+    printf("\t|Digite a opcao desejada:\n");
+    printf("\t|[1]==>Leitura de um Arquivo ja existente.|");
     printf("\n\t|[2]==>Digitar o conteudo via teclado.|\n");
     scanf("%d",&resposta);
 
@@ -28,16 +28,23 @@ void OpcaoLeitura(FILE **fp) {
             printf("Erro ao abrir o arquivo %s\n", nomeArquivo);
             return;
         }
+        printf("\tAs instrucoes em binário serao salvas em saida.bin.\n");
+        *fpS = fopen("saida.bin","w");
     } else if (resposta == 2) {
-        *fp = fopen("entrada.txt","w");
-        printf("\tDigite as Instruções: \n");
+        printf("\tDigite o nome do arquivo destinado a entrada:\n");
+        scanf("%s",&nomeArquivo);
+        *fp = fopen(nomeArquivo,"w");
+        printf("\tDigite o nome do arquivo destinado a saida:\n");
+        scanf("%s",&nomeArquivoSaida);
+        *fpS = fopen(nomeArquivoSaida,"w");
+        printf("\tDigite as Instrucoes: \n");
         getchar();
         while((ViaTeclado=getchar())!=EOF){
             putc(ViaTeclado,*fp);
 
         }
         fclose(*fp);
-        *fp = fopen("entrada.txt","r");
+        *fp = fopen(nomeArquivo,"r");
     }else{
         printf("\nOpcao Invalida!\n");
         exit(1);
@@ -114,6 +121,7 @@ char* Rs_converte(char *variavel){
         vetor_binario[aux] = '0';
     }aux+=1;
     }
+    vetor_binario[5] = '\0';
     return vetor_binario;
 }
 

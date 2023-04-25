@@ -2,12 +2,6 @@
 #include <stdlib.h>
 
 //Buscar o elemento 4
-
-/*void verificar(int *vetor,int inicio,int fim){
-
-    
-
-}*/
 int buscaBinaria(int *vetor,int N,int elem){
     int i,inicio,meio,final;
     inicio = 0;

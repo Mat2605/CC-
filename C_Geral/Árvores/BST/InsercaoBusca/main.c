@@ -72,11 +72,13 @@ int main(void){
 
     No *value;
     inicializar_arvore(&value);
-    inserir(&value,100);
-    inserir(&value,101);
-    inserir(&value,90);
-    inserir(&value,91);
-    inserir(&value,98);
+    inserir(&value,5);
+    inserir(&value,3);
+    inserir(&value,7);
+    inserir(&value,2);
+    inserir(&value,4);
+    inserir(&value,6);
+    inserir(&value,1);
     PreOrdem(value);
     Ordem(value);
     PosOrdem(value);

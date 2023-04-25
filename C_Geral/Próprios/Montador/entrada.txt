@@ -1,2 +1,2 @@
-add x2,x3,x4
-xor x3,x4,x6
+bne x2,x1,x2
+beq x2,x1,x3
