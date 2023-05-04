@@ -3,7 +3,9 @@
 #include <stdlib.h>
 
 //Pergunta ao usuário se deseja ler um arquivo já existente ou se quer digitar as instruções via teclado
-void OpcaoLeitura(FILE **fp,FILE **fpS);
+int OpcaoLeitura(FILE **fp,FILE **fpS);
+
+void comandoentrada(FILE **fp,FILE **fpS);
 
 //Para todas as funções,remove o primeiro caractere do registrador,ou seja,o 'x'
 char* remover_caractere(char *p);

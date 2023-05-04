@@ -10,7 +10,7 @@ int main(void) {
     FILE *fp, *fpS;
     int resposta, aux, opcao;
     // processa as instruções
-    OpcaoLeitura(&fp,&fpS);
+    opcao = OpcaoLeitura(&fp,&fpS);
     aux = contagem_linhas(fp);
     MatrizBinario = (char **)malloc(aux * sizeof(char *));
     for(int i = 0; i < aux; i++) {
@@ -62,7 +62,9 @@ int main(void) {
 
     fclose(fp);
     fclose(fpS);
-    PrintarArquivo("saida.bin");
+    if(opcao==1){
+        PrintarArquivo("saida.bin");
+    }
 
     return 0;
 }

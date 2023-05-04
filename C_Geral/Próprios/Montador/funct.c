@@ -11,14 +11,19 @@ void PrintarArquivo(char*nomeArquivo) {
         printf("Erro ao abrir o arquivo!\n");
     }
 }
-void OpcaoLeitura(FILE **fp,FILE **fpS) {
-    char nomeArquivo[15], ViaTeclado,nomeArquivoSaida[15];
+
+
+
+
+
+int OpcaoLeitura(FILE **fp, FILE **fpS) {
+    char nomeArquivo[15], nomeArquivoSaida[15];
     int resposta, tamanho = 0;
     printf("\t\t\t Montador\n");
     printf("\t|Digite a opcao desejada:\n");
     printf("\t|[1]==>Leitura de um Arquivo ja existente.|");
     printf("\n\t|[2]==>Digitar o conteudo via teclado.|\n");
-    scanf("%d",&resposta);
+    scanf("%d", &resposta);
 
     if (resposta == 1) {
         printf("\tDigite o nome do arquivo:");
@@ -26,31 +31,44 @@ void OpcaoLeitura(FILE **fp,FILE **fpS) {
         *fp = fopen(nomeArquivo, "r");
         if (*fp == NULL) {
             printf("Erro ao abrir o arquivo %s\n", nomeArquivo);
-            return;
+            exit(1);
         }
         printf("\tAs instrucoes em binário serao salvas em saida.bin.\n");
         *fpS = fopen("saida.bin","w");
+        return 1;
     } else if (resposta == 2) {
-        printf("\tDigite o nome do arquivo destinado a entrada:\n");
-        scanf("%s",&nomeArquivo);
-        *fp = fopen(nomeArquivo,"w");
-        printf("\tDigite o nome do arquivo destinado a saida:\n");
-        scanf("%s",&nomeArquivoSaida);
-        *fpS = fopen(nomeArquivoSaida,"w");
+        printf("\tInsira o comando:\nExemplo:./binario_programa entrada.asm -o saida\n");
+        char input[50],var1[10],var2[10];
+        scanf(" %[^\n]", input); // lê a entrada completa até a quebra de linha
+        sscanf(input, "%s %s %s %s",var1,nomeArquivo,var2, nomeArquivoSaida); 
+        // separa as informações necessárias
+        memset(var1, 0, sizeof(var1));
+        memset(var1, 0, sizeof(var2));
+        // abre os arquivos de entrada e saída
+        *fp = fopen(nomeArquivo, "w");
+        if (*fp == NULL) {
+            printf("Erro ao criar o arquivo %s\n", nomeArquivo);
+            exit(1);
+        }
+        *fpS = fopen(nomeArquivoSaida, "w");
+        if (*fpS == NULL) {
+            printf("Erro ao criar o arquivo %s\n", nomeArquivoSaida);
+            exit(1);
+        }
         printf("\tDigite as Instrucoes: \n");
-        getchar();
+        char ViaTeclado;
         while((ViaTeclado=getchar())!=EOF){
             putc(ViaTeclado,*fp);
-
         }
         fclose(*fp);
         *fp = fopen(nomeArquivo,"r");
-    }else{
+        return 2;
+    } else {
         printf("\nOpcao Invalida!\n");
         exit(1);
-
     }
 }
+
 
 
 //Converte o Imediato de instruções para binário,valores negativos e positivos
