@@ -37,36 +37,59 @@ void inserir(struct Tabela_Hash *hash, char *key, int value){
 }
 
 //remover um nó na tabela
-void remover(Tabela_Hash *tabela,char *key){
-    //busca o endereço para a palavra
-    int index = encontrarHash(key,7);
-    //caso o respectivo endereço não esteja nulo e seu conteúdo for igual a chave de busca,o elemento é removido
-    if(tabela->table[index]!=NULL&&(!strcmp(tabela->table[index]->nome,key))){
-        free(tabela->table[index]);
-        tabela->table[index] = NULL;
+void remover(Tabela_Hash *tabela, char *key) {
+    // Calcula o índice hash para a chave
+    int index = encontrarHash(key, 7);
+
+    // Verifica se o primeiro elemento da lista corresponde à chave
+    if (tabela->table[index] != NULL && strcmp(tabela->table[index]->nome, key) == 0) {
+        struct Passageiro *remover = tabela->table[index];
+        tabela->table[index] = tabela->table[index]->next;
+        free(remover);
         return;
     }
+
+    // Procura a chave nas colisões
+    struct Passageiro *atual = tabela->table[index];
+    struct Passageiro *anterior = NULL;
+
+    while (atual != NULL) {
+        if (strcmp(atual->nome, key) == 0) {
+            printf("\tEncontrado!\n");
+            anterior->next = atual->next;
+            free(atual);
+            return;
+        }
+
+        anterior = atual;
+        atual = atual->next;
+    }
+
+    printf("\tElemento não encontrado!\n");
 }
-struct Passageiro *busca(Tabela_Hash *tabela,char *key){
+
+struct Passageiro* busca(Tabela_Hash* tabela, char* key) {
     int index = encontrarHash(key,7);
-    // verifica se a posição na tabela contém o nó com a chave procurada
-    if(tabela->table[index]!=NULL && !strcmp(tabela->table[index]->nome,key)){
+    
+    // Verifica se a posição na tabela contém o nó com a chave procurada
+    if (tabela->table[index] != NULL && strcmp(tabela->table[index]->nome, key) == 0) {
+        printf("\tEncontrado!\n");
         return tabela->table[index];
     }
-    // se a posição não contém o nó, procura pela chave nas posições seguintes usando sondagem linear
-    int i = index + 1;
-    while(i!=index){
-        if(i>=7){
-            i = 0;
-        }
-        if(tabela->table[i]!=NULL && !strcmp(tabela->table[i]->nome,key)){
+    
+    // Se a posição não contém o nó, procura pela chave nas posições seguintes usando sondagem linear
+    int i = (index + 1) % 7;
+    while (i != index) {
+        if (tabela->table[i] != NULL && strcmp(tabela->table[i]->nome, key) == 0) {
+            printf("\tEncontrado!\n");
             return tabela->table[i];
         }
-        i++;
-
+        i = (i + 1) % 7;
     }
+    
+    printf("\tNão Encontrado!\n");
     return NULL;
-    //elemento não encontrado.
+    // Elemento não encontrado.
 }
 void imprimir_Tabela_Hash(struct Tabela_Hash *hash) {
     for (int i = 0; i < 7; i++) {
