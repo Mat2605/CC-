@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-int main() {
+int main(int argc,char *argv[]) {
     string entrada, palavra_forca;
     int tamanho_str, contador;
     char letra;
@@ -21,16 +21,23 @@ int main() {
         
     }
     contador = tamanho_str + 3;
+    system("cls");
     // O jogador tem chance de ter mais 3 tentativas
     while (contador >= 0) {
         cout << "Digite uma letra:" << "\n";
         cin >> letra;
         size_t pos = entrada.find(letra);
         if (pos != string::npos) {
-            cout << "Letra presente na palavra!" << "\n";
             for (int i = 0; i < tamanho_str; i++) {
                 if (entrada[i] == letra) {
-                    palavra_forca[i] = letra;
+                    if(palavra_forca[i]=='_'){
+                        palavra_forca[i] = letra;
+                        cout << "Letra presente na palavra!" << "\n";
+                    }else{
+                        cout << "Letra ja esta presente na palavra!" << "\n";
+
+                    }
+                
                 }
             }
         } else {
