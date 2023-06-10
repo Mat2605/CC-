@@ -1,0 +1,6 @@
+O trabalho consiste na implementacao de uma versao simplificada do caminho de dados do RISC-V
+Cada grupo devera implementar um subconjunto diferente de instrucoes
+O ponto de partida para todos os grupos e o caminho de dados apresentado abaixo
+Trata-se da Figura do livro RISC-V utilizado em classe e que implementa as instrucoes
+ADD SUB AND OR LD SD BEQ
+Note It is important to know that we must declare a file-type pointer when we are working with various files in a program This helps establish direct communication between a program and the files

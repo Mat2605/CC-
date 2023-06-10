@@ -1,0 +1,1 @@
+O trabalho consiste na implementacao de uma versao simplificada do caminho de dados do RISC-V.Cada grupo devera implementar um subconjunto diferente de instrucoes.O ponto de partida para todos os grupos e o caminho de dados apresentado abaixo.Trata-se da Figura 4.21 do livro RISC-V utilizado em classe e que implementa as instrucoes:ADD,SUB,AND,OR,LD,SD,BEQ 

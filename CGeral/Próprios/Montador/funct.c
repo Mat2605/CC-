@@ -11,11 +11,6 @@ void PrintarArquivo(char*nomeArquivo) {
         printf("Erro ao abrir o arquivo!\n");
     }
 }
-
-
-
-
-
 int OpcaoLeitura(FILE **fp, FILE **fpS) {
     char nomeArquivo[15], nomeArquivoSaida[15];
     int resposta, tamanho = 0;
