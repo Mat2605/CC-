@@ -1,7 +1,5 @@
-add x5,x4,x3
-bne x2,x3,20
-sll x5,x6,x7
-addi x5,x4,20
-lw x3,40(x5)
-sw x3,40(x5)
-xor x12,x13,x14
+add x9,x20,x21
+sll x1, x2, x2
+or x2, x2, x1
+andi x2, x1, 16
+addi x3, x2, -243
