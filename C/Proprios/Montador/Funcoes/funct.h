@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include <locale.h>
 //Pergunta ao usuário se deseja ler um arquivo já existente ou se quer digitar as instruções via teclado
 int OpcaoLeitura(FILE **fp,FILE **fpS);
 
@@ -45,3 +45,5 @@ void escreve_saidaSw(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode
 
 //Utilizado para escrever no arquivo as instruções SB em binário
 void escreve_saidaB(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode);
+
+void auxmain(FILE* fpS,char** MatrizBinario,char *p);

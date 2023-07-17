@@ -14,12 +14,15 @@ void PrintarArquivo(char*nomeArquivo) {
 int OpcaoLeitura(FILE **fp, FILE **fpS) {
     char nomeArquivo[15], nomeArquivoSaida[15];
     int resposta, tamanho = 0;
-    printf("\t\t\t Montador\n");
-    printf("\t|Digite a opcao desejada:\n");
-    printf("\t|[1]==>Leitura de um Arquivo ja existente.|");
-    printf("\n\t|[2]==>Digitar o conteudo via teclado.|\n");
+    printf("\n\t\t\t  Montador\n");
+    printf("\t----------------------------------\n");
+    printf("\t| Digite a opçao desejada:       |\n");
+    printf("\t| [1] ==> Leitura de um arquivo  |\n");
+    printf("\t|         ja existente.          |\n");
+    printf("\t| [2] ==> Digitar o conteudo     |\n");
+    printf("\t|         via teclado.           |\n");
+    printf("\t----------------------------------\n");
     scanf("%d", &resposta);
-
     if (resposta == 1) {
         printf("\tDigite o nome do arquivo:");
         scanf("%s", nomeArquivo);
@@ -64,8 +67,6 @@ int OpcaoLeitura(FILE **fp, FILE **fpS) {
     }
 }
 
-
-
 //Converte o Imediato de instruções para binário,valores negativos e positivos
 char* converteImediato(char *variavel){
     int decimal,rI,aux = 0, negativo = 0;
@@ -80,7 +81,6 @@ char* converteImediato(char *variavel){
         decimal = ~decimal + 1; // inverte todos os bits e adiciona 1
         negativo = 1;
     }
-
     for(int i = 11;i>=0;i--){
         rI = decimal>>i;
         if((rI&1)){
@@ -90,7 +90,6 @@ char* converteImediato(char *variavel){
         }
         aux+=1;
     }
-
     if(negativo) {
         // adiciona o bit de sinal (1 para negativo)
         vetor_binario[0] = '1';
@@ -312,4 +311,45 @@ void escreve_saidaSw(FILE* fpS, char** MatrizBinario, char* funct3, char* opcode
         fprintf(fpS,opcode);
         fprintf(fpS,"\n");
 
+}
+
+void auxmain(FILE* fpS,char** MatrizBinario,char *p){
+    if (!(strcmp(p, "add"))) {
+            TipoR(p, fpS, MatrizBinario, "000","0000000","0110011");
+        } else if(!(strcmp(p, "and"))){
+            TipoR(p, fpS, MatrizBinario, "111","0000000","0110011");
+        }else if(!(strcmp(p, "sub"))){
+            TipoR(p, fpS, MatrizBinario, "000","0100000","0110011");
+        }else if (!(strcmp(p, "xor"))) {
+            TipoR(p, fpS, MatrizBinario, "100","0000000","0110011");
+        }else if(!(strcmp(p, "or"))){
+            TipoR(p, fpS, MatrizBinario, "110","0000000","0110011");
+        }else if (!(strcmp(p, "sll"))) {
+            TipoR(p, fpS, MatrizBinario, "001","0000000","0110011");
+        }else if(!(strcmp(p, "srl"))){
+            TipoR(p, fpS, MatrizBinario, "101","0000000","0110011");
+        } else if (!(strcmp(p, "addi"))) {
+            TipoI(p, fpS, MatrizBinario, "000", "0010011");
+        }else if(!(strcmp(p, "andi"))){
+            TipoI(p, fpS, MatrizBinario, "111", "0010011");
+        }else if(!(strcmp(p, "ori"))){
+            TipoI(p, fpS, MatrizBinario, "110", "0010011");
+        } else if (!(strcmp(p, "lw"))) {
+            TipoILw(p, fpS, MatrizBinario, "010", "0000011");
+        }else if(!(strcmp(p, "lb"))){
+            TipoILw(p, fpS, MatrizBinario, "000", "0000011");
+        }else if(!(strcmp(p, "lh"))){
+            TipoILw(p, fpS, MatrizBinario, "001", "0000011");
+        }else if (!(strcmp(p, "sw"))) {
+            TipoISw(p, fpS, MatrizBinario, "010", "0100011");
+        }else if(!(strcmp(p, "sb"))){
+            TipoISw(p, fpS, MatrizBinario, "000", "0100011");
+        }else if(!(strcmp(p, "sh"))){
+            TipoISw(p, fpS, MatrizBinario, "010,", "0100011");
+        }else if(!(strcmp(p,"bne"))){
+            TipoB(p,fpS,MatrizBinario,"001","1100011");
+        }else if(!(strcmp(p,"beq"))){
+            TipoB(p,fpS,MatrizBinario,"000","1100011");
+
+        }
 }
