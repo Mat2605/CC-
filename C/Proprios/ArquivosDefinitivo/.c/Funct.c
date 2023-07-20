@@ -1,7 +1,7 @@
-#include "Funct.h"
+#include "C:\Users\mathe\Documents\CC++\C\Proprios\ArquivosDefinitivo\.h\Funct.h"
 
 int CondicaoDeExistencia(FILE **ptr){
-    *ptr = fopen("File02.txt", "r");
+    *ptr = fopen("C:\\Users\\mathe\\Documents\\CC++\\C\\Proprios\\ArquivosDefinitivo\\ArquivosDeTexto\\File01.txt", "r");
     if (*ptr == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         return 1;
@@ -90,6 +90,7 @@ int LerPorBuffer(FILE** ptr, char** ConteudoArquivo) {
 int LerPorToken(FILE **ptr, char** ConteudoArquivo) {
     int linha = 0;
     char palavra[50];
+    
     
     while (fscanf(*ptr, "%49s", palavra) == 1) {
         ConteudoArquivo[linha] = (char*) malloc((strlen(palavra) + 1) * sizeof(char));

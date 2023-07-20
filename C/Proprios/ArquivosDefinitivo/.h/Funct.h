@@ -4,7 +4,6 @@
 #include <ctype.h>
 #include <time.h>
 
-
 int CondicaoDeExistencia(FILE **ptr);
 int ContagemLinhas(FILE **ptr,int *linhas);
 void LimparPontuacao(char* palavra);
