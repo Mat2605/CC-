@@ -1,8 +1,0 @@
-//
-// Created by mathe on 16/10/2023.
-//
-
-#ifndef CC_CAMINHORAMIFICADO_H
-#define CC_CAMINHORAMIFICADO_H
-
-#endif //CC_CAMINHORAMIFICADO_H
