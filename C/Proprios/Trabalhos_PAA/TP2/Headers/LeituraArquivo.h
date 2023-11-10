@@ -1,8 +1,13 @@
-//
-// Created by mathe on 01/11/2023.
-//
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-#ifndef CC_LEITURAARQUIVO_H
-#define CC_LEITURAARQUIVO_H
+typedef struct MatrizMapa{
+    int ColunasMapa,LinhasMapa;
+    int ColunasInicial,LinhasInicial,ColunasFinal,LinhasFinal;
+    int VidaJogador;
+    int **ConteudoMapa;
+}MatrizMapa;
 
-#endif //CC_LEITURAARQUIVO_H
+void LeituraMatriz(const char *arqEntrada,MatrizMapa *ptr);
+void EscreverSaida(const char *Saida);

@@ -1,29 +1,7 @@
-# Makefile para compilar o seu programa
+all:
+	gcc main.c Headers/lerArquivo.h src/lerArquivo.c Headers/cores.h Headers/auxiliares.h src/auxiliares.c Headers/pilha.h src/pilha.c  Headers/CaminhoRamificado.h src/CaminhoRamificado.c Headers/jogador.h src/jogador.c
 
-# Especificando os arquivos fonte e objetos
-SRCS = Pilha.c FunctionsArquivo.c Jogador.c MainTeste.c
-OBJS = $(SRCS:.c=.o)
-
-# Nome do executável
-EXECUTABLE = cmd
-
-# Compilador
-CC = gcc
-
-# Flags de compilação
-CFLAGS = -c -Wall
-
-# Alvo padrão
-all: $(EXECUTABLE)
-
-# Regras de compilação para os arquivos objetos
-%.o: .c/%.c
-	$(CC) $(CFLAGS) -o $@ $<
-
-# Regra de compilação para o executável final
-$(EXECUTABLE): $(OBJS)
-	$(CC) -o $@ $^
-
-# Alvo para limpar os arquivos objetos e o executável
-clean:
-	rm -f $(OBJS) $(EXECUTABLE)
+Linux:
+	./a.out
+Windows:
+	./a.exe

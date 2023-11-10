@@ -58,9 +58,9 @@ int CaracterePorCaractere(FILE **ptr,char** ConteudoArquivo){
         }
         caractere_aux = fgetc(*ptr);
     }
-    for (int i = 0; i < auxLinhas; i++) {
+    //for (int i = 0; i < auxLinhas; i++) {
         //printf("\n[%d]==:%s",i,ConteudoArquivo[i]);
-    }
+    //}
     printf("\n");
     return auxLinhas;
     fseek(*ptr,0,SEEK_SET);

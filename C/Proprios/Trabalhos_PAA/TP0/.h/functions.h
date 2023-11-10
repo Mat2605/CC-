@@ -1,8 +1,24 @@
-//
-// Created by mathe on 14/08/2023.
-//
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define COLUMN 80
+#define LINE 20
 
-#ifndef CC_FUNCTIONS_H
-#define CC_FUNCTIONS_H
+void initialize_matriz(char matriz[LINE][COLUMN]);
+void CopiarMatriz(char matriz[LINE][COLUMN],char matrizDemo[LINE][COLUMN]);
+void CompararMatriz(char matriz[LINE][COLUMN],char matrizDemo[LINE][COLUMN]);
 
-#endif //CC_FUNCTIONS_H
+int Menu(char matriz[LINE][COLUMN],char matrizDemo[LINE][COLUMN]);
+
+int VerificarEspacoPonto(int plus_line,int plus_column,char matriz[LINE][COLUMN]);
+int VerificarEspacoSimboloMais(int plus_line,int plus_column,char matriz[LINE][COLUMN]);
+int VerificarEspacoSimboloX(int plus_line,int plus_column,char matriz[LINE][COLUMN]);
+int VerificarEspacoEstrela(int plus_line,int plus_column,char matriz[LINE][COLUMN]);
+
+void DesenharPonto(int EntradaUsuario,char matriz[LINE][COLUMN]);
+void DesenharSimboloMais(int EntradaUsuario,char matriz[LINE][COLUMN]);
+void DesenharX(int EntradaUsuario,char matriz[LINE][COLUMN]);
+void DesenharRandomicamente(int NumeroPontos,int NumeroSomas,int NumeroX,char matriz[LINE][COLUMN]);
+void DesenharEstrela(int EntradaUsuario,char matriz[LINE][COLUMN]);
+
+void Print_Matriz(char matriz[LINE][COLUMN]);

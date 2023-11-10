@@ -53,7 +53,7 @@ void Imprimir_Conteudo(Lista *var) {
     aux = var->Primeiro->prox;
     
     while (aux != NULL) {
-        printf("Palavra:[%s], Quantidade:[%d]\n", aux->palavra_lista.palavra, aux->palavra_lista.contador);
+        printf("Palavra:[%s], Quantidade:[%zu]\n", aux->palavra_lista.palavra, aux->palavra_lista.contador);
 
         aux = aux->prox;
     }

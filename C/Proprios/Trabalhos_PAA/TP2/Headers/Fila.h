@@ -1,8 +1,18 @@
-//
-// Created by mathe on 02/11/2023.
-//
+#include "Pilha.h"
 
-#ifndef CC___FILA_H
-#define CC___FILA_H
+typedef struct Node {
+    int linha,coluna;
+    struct Node* next;
+} Node;
 
-#endif //CC___FILA_H
+typedef struct Fila {
+    Node* front;
+    Node* rear;
+} Fila;
+
+void initializeFila(Fila* fila);
+int isEmptyFila(Fila* fila);
+void InserirFila(Fila* fila, int linha,int coluna);
+void RetirarFila(Fila* fila);
+void imprimirFila(Fila* fila);
+void liberarFila(Fila* fila);

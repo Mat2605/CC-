@@ -1,6 +1,9 @@
 #include "C:\Users\mathe\Documents\CC++\C\Proprios\ArquivosDefinitivo\.h\Funct.h"
 #include "C:\Users\mathe\Documents\CC++\C\Proprios\ArquivosDefinitivo\.h\ListaDePalavras.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 //ESSE PROJETO SERÁ PARA CONSEGUIR MANIPULAR UM ARQUIVO COM VÁRIOS TIPOS DE OPERAÇÕES
 //FACILITAR PARA PROJETOS FUTUROS COM ESSE TIPO DE ABORDAGEM
 
@@ -10,7 +13,6 @@ int main(void) {
 
     char *ConteudoArquivo[216];
     char *Ordena[216];
-    int *vetorLinhas;
     FILE *ptrFile;
     unsigned int Linhas,tamanho;
     Lista lista;

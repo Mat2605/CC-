@@ -1,8 +1,20 @@
-//
-// Created by mathe on 02/11/2023.
-//
+#include "LeituraArquivo.h"
 
-#ifndef CC___PILHA_H
-#define CC___PILHA_H
+typedef struct Coordenadas {
 
-#endif //CC___PILHA_H
+    int line, collun;
+    struct Coordenadas* next;
+
+} Coordenadas;
+
+typedef struct PilhaCoordenadas {
+    Coordenadas* topo;
+} PilhaCoordenadas;
+
+void initialize(PilhaCoordenadas* ptr);
+int isEmpty(PilhaCoordenadas* ptr);
+void push(PilhaCoordenadas* ptr, int ptrLine, int ptrCollun);
+void pop(PilhaCoordenadas* ptr);
+void ApresentarCoordenadas(PilhaCoordenadas* ptr);
+void LiberarPilha(PilhaCoordenadas* ptr);
+
