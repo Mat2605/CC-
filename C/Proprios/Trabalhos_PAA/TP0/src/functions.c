@@ -1,4 +1,4 @@
-#include "C:\Users\mathe\Documents\CC++\C\Proprios\Trabalhos_PAA\TP0\.h\functions.h"
+#include "../Headers/functions.h"
 void initialize_matriz(char matriz[LINE][COLUMN]) {
     for (int i = 0; i < COLUMN; i++) {
         matriz[0][i] = '-';
@@ -59,7 +59,7 @@ int Menu(char matriz[LINE][COLUMN],char matrizDemo[LINE][COLUMN]) {
                     if(quantidadeDesenhos<3){
                         quantidadeDesenhos = 3;
                     }
-                    d o{
+                    do{
                         NumeroPontos = 1 + rand() % (quantidadeDesenhos);
                         while((quantidadeDesenhos-1)<=NumeroPontos||NumeroPontos==quantidadeDesenhos){
                             NumeroPontos = 1 + rand() % (quantidadeDesenhos);

@@ -1,11 +1,13 @@
 #include "../Headers/pilha.h"
+
 typedef struct ConteudoJogador{
-    //int Direita, Esquerda, Cima, Baixo;
+
     char Valor;
 
 }ConteudoJogador;
 
 typedef struct MatrizJogador{
+    //A matriz Jogador
     ConteudoJogador **ConteudoJogador;
 }MatrizJogador;
 
@@ -15,6 +17,8 @@ typedef struct Jogador{
     int ChavesColetadas,TamanhoJogadorX,TamanhoJogadorY;
     //Interação com a struct MatrizJogador
     MatrizJogador *PtrJ;
+
+    int contadorBacktracking;
 }Jogador;
 
 void inicializarJogador(Jogador *Ptr,TIPO_MATRIZ Var_TipoMatriz);

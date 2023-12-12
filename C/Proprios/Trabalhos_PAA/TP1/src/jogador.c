@@ -22,8 +22,10 @@ void inicializarJogador(Jogador *Ptr,TIPO_MATRIZ Var_TipoMatriz){
         }
     }
 
+    Ptr->contadorBacktracking = 0;
 
 }
+
 void Movimentar(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,PilhaCoordenadas *pilha,PilhaCoordenadas *pilhaChaves,PilhaRamificado *pilhaRamificacao,FilaPilhas *Fila){
     int X,Y;
     int a,b;
@@ -35,10 +37,14 @@ void Movimentar(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,PilhaCoordenadas *pilha
     initialize(pilhaChaves);
     inicializarRamificacao(pilhaRamificacao);
     initializeFilaPilhas(Fila);
+
     backtracking(Ptr,Var_TipoMatriz,&X,&Y,pilhaChaves,pilha,&a,&b,&control,pilhaRamificacao,Fila);
+
 }
 
 int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoordenadas *pilhaChaves,PilhaCoordenadas *pilha,int *I_Ramificacao,int *J_Ramificacao,int *control,PilhaRamificado *pilhaRamificacao,FilaPilhas *Fila){
+
+    Ptr->contadorBacktracking += 1;
 
     //Posição válida
     if(Ptr->PtrJ->ConteudoJogador[*i][*j].Valor=='C'){
@@ -46,16 +52,17 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
         Ptr->ChavesColetadas +=1;
     }
     if(*control==0&&Ptr->PtrJ->ConteudoJogador[*i][*j].Valor=='X' && Ptr->ChavesColetadas==Var_TipoMatriz->mat_CHAVES){
-        //Registrar a rota
-        //Inserir na fila de pilhas
-        //Adicionar a posição do tesouro
+
         push(pilha,*i,*j);
+
         InserirFilaPilhas(Fila,pilha);
+
         pop(pilha);
         *control = 1;
+
         return 1;
     }
-    //Caminho Válido, Ramificação ou Não.
+
     if(Ptr->PtrJ->ConteudoJogador[*i][*j].Valor=='0' || Ptr->PtrJ->ConteudoJogador[*i][*j].Valor=='C'){
         Ptr->PtrJ->ConteudoJogador[*i][*j].Valor = 'V';
         //Empilhar o valor válido
@@ -64,6 +71,10 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
             *I_Ramificacao = *i;
             *J_Ramificacao = *j;
             pushRamificacao(pilhaRamificacao,*I_Ramificacao,*J_Ramificacao);
+
+            //Uma ramificação foi indentificada
+            // Lógica para lidar com bifurcações.
+
             if(pilhaRamificacao->topo->RamificadoDireita == -1 && ExisteDireita(Ptr,*i,*j)&& pilhaRamificacao->topo->RamificadoDireita != 1){
 
                 pilhaRamificacao->topo->RamificadoDireita = 1;
@@ -77,6 +88,7 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
 
                 if(isEmpty(pilha)==0){
                     LimparMatriz(Ptr,pilha,pilhaChaves,I_Ramificacao,J_Ramificacao);
+
                 }
 
                 *control = 0;
@@ -86,10 +98,12 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
 
                 pilhaRamificacao->topo->RamificadoDireita = 0;
             }
+
             if(pilhaRamificacao->topo->RamificadoBaixo == -1 && ExisteBaixo(Ptr,*i,*j) && pilhaRamificacao->topo->RamificadoBaixo != 1){
 
                 pilhaRamificacao->topo->RamificadoBaixo = 1;
-                //Avança para a sala em baixo
+
+                //Avança para a posição de baixo
                 (*i) = (*i) + 1;
                 backtracking(Ptr, Var_TipoMatriz, i, j,pilhaChaves, pilha, I_Ramificacao, J_Ramificacao,control,pilhaRamificacao,Fila);
 
@@ -99,6 +113,7 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
 
                 if(isEmpty(pilha)==0){
                     LimparMatriz(Ptr,pilha,pilhaChaves,I_Ramificacao,J_Ramificacao);
+
                 }
 
                 *control = 0;
@@ -111,7 +126,7 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
 
             if(pilhaRamificacao->topo->RamificadoEsquerda == -1 && ExisteEsquerda(Ptr,*i,*j) && pilhaRamificacao->topo->RamificadoEsquerda != 1){
 
-                // Avança para a sala à esquerda
+                // Avança para a posição à esquerda
                 pilhaRamificacao->topo->RamificadoEsquerda = 1;
                 (*j) = (*j) - 1;
                 backtracking(Ptr, Var_TipoMatriz, i, j,pilhaChaves, pilha, I_Ramificacao, J_Ramificacao,control,pilhaRamificacao,Fila);
@@ -134,7 +149,7 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
                 pilhaRamificacao->topo->RamificadoEsquerda = 0;
             }
             if(pilhaRamificacao->topo->RamificadoCima == -1 && ExisteCima(Ptr,*i,*j) && pilhaRamificacao->topo->RamificadoCima != 1){
-                // Avança para a sala de Cima
+                // Avança para a posição de Cima
                 pilhaRamificacao->topo->RamificadoCima = 1;
                 (*i) = (*i) - 1;
                 backtracking(Ptr, Var_TipoMatriz, i, j,pilhaChaves, pilha, I_Ramificacao, J_Ramificacao,control,pilhaRamificacao,Fila);
@@ -143,7 +158,6 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
                 }
                 if(isEmpty(pilha)==0){
                     LimparMatriz(Ptr,pilha,pilhaChaves,I_Ramificacao,J_Ramificacao);
-                    //Printar(Ptr);
                 }
                 *control = 0;
                 (*i) = (*I_Ramificacao);
@@ -168,43 +182,46 @@ int backtracking(Jogador *Ptr,TIPO_MATRIZ *Var_TipoMatriz,int *i,int *j,PilhaCoo
             backtracking(Ptr, Var_TipoMatriz, i, j,pilhaChaves, pilha, I_Ramificacao, J_Ramificacao,control,pilhaRamificacao,Fila);
         }else{
             //Apenas uma das direções é possível, sem o risco de repetir o mesmo padrão de movimento
-            //Avança para a sala em baixo
+            //Avança para a posição em baixo
             if (*control == 0 && ExisteBaixo(Ptr,*i,*j)  && ((*i==*I_Ramificacao && *j==*J_Ramificacao)==0)) {
                 (*i) = (*i) + 1;
                 backtracking(Ptr, Var_TipoMatriz, i, j, pilhaChaves, pilha, I_Ramificacao, J_Ramificacao, control,pilhaRamificacao,Fila);
             }
-            //Avança para a sala de cima
+            //Avança para a posição de cima
             if (*control == 0 && ExisteCima(Ptr,*i,*j) && ((*i==*I_Ramificacao && *j==*J_Ramificacao)==0)) {
                 (*i) = (*i) - 1;
                 backtracking(Ptr, Var_TipoMatriz, i, j, pilhaChaves, pilha, I_Ramificacao, J_Ramificacao, control,pilhaRamificacao,Fila);
             }
-            //Avança para a sala da esquerda
+            //Avança para a posição da esquerda
             if (*control == 0 && ExisteEsquerda(Ptr,*i,*j)  && ((*i==*I_Ramificacao && *j==*J_Ramificacao)==0)) {
                 (*j) = (*j) - 1;
                 backtracking(Ptr, Var_TipoMatriz, i, j, pilhaChaves, pilha, I_Ramificacao, J_Ramificacao, control,pilhaRamificacao,Fila);
             }
-            //Avança para a sala da direita
+            //Avança para a posição da direita
             if (*control == 0 && ExisteDireita(Ptr,*i,*j) && ((*i==*I_Ramificacao && *j==*J_Ramificacao)==0)) {
-                //printf("Dentro de Direita!\n");
                 (*j) = (*j) + 1;
                 backtracking(Ptr, Var_TipoMatriz, i, j, pilhaChaves, pilha, I_Ramificacao, J_Ramificacao, control,pilhaRamificacao,Fila);
             }
         }
     }
+
     return 0; // sem caminho
 }
 int ExisteRamificacao(Jogador *Ptr,int i,int j){
-    //DeterminaDirecoes(Ptr,i,j);
+
     int CIMA,DIREITA,ESQUERDA,BAIXO,Flag;
+
     DIREITA = ExisteDireita(Ptr,i,j);
     ESQUERDA = ExisteEsquerda(Ptr,i,j);
     CIMA = ExisteCima(Ptr,i,j);
     BAIXO = ExisteBaixo(Ptr,i,j);
     Flag = DIREITA+ESQUERDA+CIMA+BAIXO;
+
     if(Flag>1){
         return 1;
     }
     return 0;
+
 }
 
 int LimparMatriz(Jogador *Ptr,PilhaCoordenadas *pilha,PilhaCoordenadas *pilhachaves,int *I_Ramificacao,int *J_Ramificacao){
@@ -243,16 +260,6 @@ int EstaPresentePilhaChaves(Jogador *Ptr,PilhaCoordenadas *pilhaChaves,int line,
         return 1;
     }
     return 0;
-}
-
-void Printar(Jogador *Ptr){
-    for(int i = 0;i<Ptr->TamanhoJogadorX;i++){
-        for(int j = 0;j<Ptr->TamanhoJogadorY;j++){
-            printf("%c ", Ptr->PtrJ->ConteudoJogador[i][j].Valor);
-        }
-        printf("\n");
-    }
-    printf("\n");
 }
 
 int ExisteDireita(Jogador *Ptr,int i,int j){

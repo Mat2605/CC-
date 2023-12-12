@@ -1,43 +1,6 @@
-# Variáveis para configurar o compilador e as opções
-CC := gcc
-CFLAGS := -Wall -Wextra
-LDFLAGS :=
-
-# Nome do executável
-TARGET := cmd
-
-# Lista de arquivos fonte
-SOURCES := main.c functions.c
-
-# Lista de objetos a serem gerados a partir dos arquivos fonte
-OBJECTS := $(SOURCES:.c=.o)
-
-# Comando para remover arquivos
-RM := rm -f
-
-# Comando para execução (dependendo do sistema)
-ifdef OS
-   # No Windows, use 'cmd.exe' para executar
-   EXEC := cmd.exe
-else
-   EXEC := ./$(TARGET)
-endif
-
-# Regras para a compilação
-all: $(TARGET)
-
-$(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Comando para limpar objetos e executável
-clean:
-	$(RM) $(OBJECTS) $(TARGET)
-
-# Comando para execução
-run: $(TARGET)
-	$(EXEC)
-
-.PHONY: all clean run
+all:
+	gcc src/main.c Headers/functions.h src/functions.c
+Linux:
+	./a.out
+Windows:
+	./a.exe

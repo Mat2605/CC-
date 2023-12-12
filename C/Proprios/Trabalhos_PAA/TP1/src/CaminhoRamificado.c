@@ -41,6 +41,9 @@ void popRamificacao(PilhaRamificado *ptr){
     ptr->topo = PTRVAR->prox;
     free(PTRVAR);
 }
+
+//Funções para teste:::
+
 void ApresentarRamificacao(PilhaRamificado *ptr){
     if(estaVazioRamificacao(ptr)){
         return;
