@@ -1,0 +1,60 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .compiladores famosos para C++: 
+    .GCC(MinGW),
+    .MSVC(microsoft),
+    .clang(linux),
+    .IDEs famosas para C++:
+    .Microsoft Visual Studio (MSVC),
+    .Clion(contém várias ferramentas),
+    .QT-Creator fácil e rápido,
+    .XCode presente no Mac e linux,
+    .Cevelop desenvolvido pelo eclipse,
+    .é possível compilar programas em C(sem recursos de c++) usando comandos para C++,
+    .para executar no Windows: g++ nome_do_arquivo.cpp -o nome_do_programa.exe;
+========================================================================================
+
+========================================================================================
+    .std::count ou count são exemplos de comandos de saída de dados(output),
+    .count é conhecido estaticamente pelo compilador(não é preciso especificar o tipo),
+    .em C, o printf usava '%' para descobrir o tipo dinâmicamente,
+    .os comandos I/O de C++ podem ser mais rápidos dos usados em C,
+    .os tipos primitivos se assemelham aos presentes em C,
+    .tipos signed ou unsigned(com ou sem sinal),
+    .permite o uso de long double,
+    .o tipo 'void' é incompleto e sem valor(não existe em C++ sizeof(void)),
+    .apresentou 'nullptr' representando ponteiros nulos,
+    .em C++ os primitivos são: inteiros,flutuantes, vazios(void), nullptr,
+    .as conversões de tipos são aplicadas em main.cpp na pasta 'ConversionRules',
+    .existe a declaração 'auto' em que: 
+    .auto a = 1 + 2(a variável é inteira) | auto a = 1+2.5(a variável será flutuante),
+    .também pode ser usado em retorno de funções:
+    .auto g(int x) -> int {return x * 2};
+    .pode ser usado como parâmetro em funções,
+    .auto piora a legibilidade do código,
+    .as aplicações estão em main.cpp na pasta 'Auto';
+========================================================================================
+
+========================================================================================
+    .Operadores unários têm precedência mais alta que operadores binários,
+    .Operadores matemáticos padrão (+, *, etc.) têm precedência mais alta que comparação 
+    bit a bit e operadores lógicos,
+    .Os operadores de comparação têm maior precedência do que os operadores bit a bit e 
+    lógicos,
+    .Operadores bit a bit têm precedência mais alta que operadores lógicos,
+    .Operadores de atribuição compostos += , -= , *= , /= , %= , ˆ= , != , &= , >>= , <<= 
+    têm prioridade mais baixa,
+    .O operador vírgula tem a precedência mais baixa,
+    .parênteses ajudam em priorizar certas operações,
+    .em C++ ainda persiste a lógica de incremento pré fixado(++i) e pós fixado(i++),
+    .declarações de variáveis são associativos e são lidos da esquerda para direita
+    .(x = y = 3),
+    .O operador vírgula tem associatividade da esquerda para a direita. Ele avalia a 
+    expressão esquerda,descarta seu resultado e retorna a expressão a direita
+    .int x = (3, 4); // 3 é descartado;
+    .operado <==> é semelhante a strcmp(pode serusado para todos os tipos),
+    .forma correta de comparar unsigned com signed é usando os operadores cmp;
+========================================================================================

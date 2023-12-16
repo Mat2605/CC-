@@ -1,0 +1,55 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .é necessário criatividade para programar,
+    .indentificar o problema e encontrar soluções criativas para o mesmo,
+    .criatividade permite reconhecer e gerar alternativas,
+    .todo programador desenvolve o seu próprio estilo,
+    .programar permite o crescimento e surgimento de novas habilidades;
+========================================================================================
+
+========================================================================================
+    .linguagem assembly é composta por instruções de fácil entendimento,
+    .muitos comandos necessários para tarefas simples,
+    .consegue expressar tudo que o computador pode fazer,
+    .com C foi possível reduzir o número de instruções necessárias para a resolução
+    de um problema,
+    .linguagem de alto nível surgida a partir da Linguagem B(originada do assembly),
+    .C++ foi denominado inicialmente como 'C com classes';
+========================================================================================
+
+========================================================================================
+    .uma das linguagens de alto nível mais eficientes,
+    .oferece ao programador o controle da performance, 
+    .consegue ser processada por uma grande gama de aparelhos,
+    .permitir escrever código eficiente sem perder o alto nível abstração,
+    .contém várias ferramentas auxiliares para a criação do código,
+    .longa vida no mercado com constantes atualizações,
+    .limitações de desempenho influenciam o design do algoritmo e direções de pesquisa;
+========================================================================================    
+
+========================================================================================
+    .sacrificar a performance apenas em situações específicas,
+    .segurança no período de compilação,
+    .apresenta o sistema de anotações o que torna o código mais legível,
+    .oferece opções para melhorar o tempo de compilação e execução,
+    .apenas adicionar/utilizar ferramentas caso ajudem na resolução do problema,
+    .sem coletor de lixo ou tipos dinâmicos,
+    .portabilidade;
+========================================================================================
+    
+========================================================================================
+    .difícil de dominar completamente,
+    .muitos recursos(ponteiros,estruturas,comportamento indefinido),
+    .é necessário ter controle da memória,
+    .focar no entendimento do problema depois o da linguagem;
+========================================================================================
+
+========================================================================================
+    .links úteis: 
+    .www.tutorialspoint.com/cplusplus,
+    .en.wikibooks.org/wiki/C++,
+    .www.learncpp.com;
+========================================================================================
