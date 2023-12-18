@@ -1,0 +1,93 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .ocorre perda de dados caso seja alocado um valor maior que a variável suporta,
+    .C++ fornece tipos inteiros de largura fixa(Fixed Width Integers):
+    .int8_t/ uint8_t,
+    .int16_t/ uint16_t,
+    .int32_t/ uint32_t,
+    .int64_t/ uint64_t,
+    .não são 'tipos' de dados e sim um 'typedef' dos primitivos,
+    .o arquivo cpp InteirosDeLarguraFixa explora os conceitos,
+    .size_t e ptrdiff_t são tipos de dados de aliases capazes de armazenar os maiores
+    valor representável na arquitetura atual,
+    .size_t retorna(sem sinal) o tamanho que cada tipo de variável consegue suportar,
+    .ptrdiff_t é uma versão signed de size_t,
+    .sobre os inteiros signed:
+    .representa números positivos/negativos/nulos,
+    .valores negativos(2^31 -1),
+    .valores positivos(2^31 -2),
+    .sendo o overflow: : (2^31 − 1) + 1 para min,
+    .sendo o underflow: −(2^31 − 1) para max,
+    .os operadores bit-wise são definidos pela aplicação,
+    .sobre os inteiros unsigned:
+    .apenas valores não negativos,
+    .o overflow e underflow é 2^32,
+    .os operadores bit-wise são bem definidos,
+    .as funções para encontrar limites são explorados na pasta 'Limites',
+    .Promoção: uma variável de maior armazenamento recebe o conteúdo de uma variável
+    de menor capacidade,
+    .Trucamento:quando uma variável de menor capacidade recebe um valor de uma variável 
+    com maior armazenamento(pode ocorrer perda de dados),
+    .conversões entre tipos/operações mal executadas/valores não condizentes levam a 
+    'undefined behavior';
+========================================================================================
+
+========================================================================================
+    .IEEE754 é o padrão técnico para aritmética de ponto flutuante,
+    .facilita a representação de valores muito grandes,
+    .define formato binário/operações possíveis/exceções,
+    .C/C++ respeitam esse formato para flutuantes,
+    .composto por um bit de sinal/oito para expoentes/vinte e três para
+    mantissa(32 bits),
+    .existem formatos para 64/128/256 bits todas variáções do 32 bits,
+    .formatos disponíveis para diferentes versões do C++ utilizado,
+    .existem outros tipos de formatos para flutuantes,
+    .cada um com destino a um tipo de aplicação,
+    .Exemplos: TF32(deep learning)/Posit(flutuantes com mantissa e expoentes de 
+    tamanhos variáveis)/MX(flutuantes com precisão baixa),
+    .representação: n = M * B^e (Radix (or base): β |Precision (or digits): p|
+    Exponent (magnitude): e|Mantissa: M),
+    .as aplicação será explorado em 'flutuantesIEEE754',
+    .Ainda sobre o formato IEEE754:
+    .Número normal:é um valor de ponto flutuante que pode ser representado com pelo 
+    menos um bit definido no expoente ou a mantissa ser composta por 0s,
+    .Número denormal: é um valor de ponto flutuante que pode ser representado com todos
+    os 0s em o expoente, mas a mantissa é diferente de zero,
+    .representação do infinito: +inf ou -inf(biblioteca limits),
+    .Not a number(NaN):representa um valor indefinido/não representável,
+    .Exemplos NaN: (0/0)|(inf/inf),
+    .Aprenseta uma representação em IEEE754,
+    .Machine epsilon ε: representa o menor número que pode ser acrescido a 1.0,
+    .o menor valor de ε varia de acordo com o formato IEEE754 utilizado,
+    .A representação de ponto flutuante é dado por fl(x) = x(1+sigma)|sigma sendo
+    uma constante pequena,
+    .Apresenta um erro relativo e absoluto,
+    .todos esses componentes estão na biblioteca limits;
+========================================================================================
+
+========================================================================================
+    .Problemas na representação nos flutuantes:a conversão entre formatos pode ser 
+    muito difícil de ser realizada,
+    .formatos double são diferentes de float(1.1 != 1.1f),
+    .a aritmética com pontos flutuantes não é associativa:
+    0.1 + (0.2 + 0.3) != (0.1 + 0.2) + 0.3,
+    .produzirá valores iguais se a ordem dos operados também forem,
+    .existem vários algoritmos para realizar operações com esse formato de flutuantes
+    que buscam alterações na mantissa ou nos expoentes,
+    .Catastrophic cancellation: perda de parte dos valores após a realização de
+    operações(soma com um valor bem maior que o outro)(subtração de valores bem
+    próximos),
+    .o valor inteiro é mais preciso em flutuante,
+    .priorizar operações de multiplicação/ divisão em vez de adições e subtrações,
+    .usar algoritmos específicos para a comparação de flutuantes,
+    .Escalar por uma potência de dois é seguro,
+    .transformar para base em log,
+    .Tente reorganizar o cálculo para manter números próximos com a mesma escala;
+========================================================================================
+
+
+
+
