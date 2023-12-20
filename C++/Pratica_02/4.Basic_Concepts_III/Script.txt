@@ -1,0 +1,73 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .uma enumeração é um tipo de dados que agrupa o nome de constantes integrais,
+    .determinado pela palavra chave 'enum': enum nome_enum {}; , 
+    .duas variáveis do tipo enumeração podem ser iguais se possuirem como valor 
+    conteúdos
+    de mesmo índice apesar dos valores contidos nesses índices serem diferentes,
+    .isso ocorre porque tipos enum são comparados como inteiros que representam as 
+    constantes de enumeração,
+    .como resolver: declarar enum class,
+    .é um tipo de dados que funciona como uma enumeração mas não é facilmente 
+    convertível a um inteiro,
+    .para comparar como inteiros basta: int variable = (int) tipo enum var,
+    .é possível ter valor atribuido a partir de indexação,
+    .possível alterar a ordem dos elementos da enumeração { RED, GREEN = -1, BLUE, BLACK},
+    ordem é 0/-1/0/1,
+    .possível usar com switch-case:
+    enum class Color { RED, GREEN, BLUE };
+        switch (x) {
+        using enum Color; // C++20
+        case RED:
+        case GREEN: 
+        case BLUE:
+    }
+    .deve-se sempre inicializar com um valor da enumeração;
+========================================================================================
+
+========================================================================================
+    .struct consegue agrupar várias variáveis de diferentes tipos em uma unidade única,
+    .enumerações podem ser declaradas dentro da struct(para interação A::X),
+    .possível de declarar mais de uma variável após a criação da struct,
+    .é possível de declarar uma struct dentro de um escopo local,
+    .toda struct deve ter um nome,
+    .é possível declarar um 'bitfield' dentro de uma estrutura:
+    .é uma variável de uma estrutura com uma largura de bits predefinida. Um campo de 
+    bits pode conter bits em vez de bytes,
+    .union é outro tipo de dados que permite armazenar vários tipos de dados no mesmo
+    espaço de memória,
+    .declarado da mesma forma do formato struct,
+    .pode ser declarado sem nome;
+========================================================================================
+
+========================================================================================
+    .caso um if seja executado caso apenas uma das condições forem atendidas se a 
+    primeira for verdadeira a segunda não é realizada(mesmo a segunda condição tiver
+    uma gramática errada não ocorre um erro de compilação),
+    .o operador ternário se mantém em C++;
+========================================================================================
+
+========================================================================================
+    .um for apresenta uma variável de controle/uma condicional/uma interação com a
+    variável de controle e tem um número de interações é conhecido,
+    .C++ permite um for com mais de uma variável de controle,
+    .um loop infinito feito por (;;),
+    .no while existe uma condicional e o número de interações não é conhecido,
+    .do-while ocorre pelo menos uma interação,
+    .break ==> interrompe o ciclo,
+    .continue ==> 'pula' para a próxima interação,
+    .return ==> sai do laço,
+    .para percorrer um laço com uma declaração menor: for (int v : { 3, 2, 1 }),
+    cout << v << " "; ,
+    .funciona como um for-each,
+    .possível fazer isso com um vetor de struct,
+    .cada case do switch-case é um escopo local,
+    .é possível realizar uma inicialização e depois uma comparação em um if/switch/for,
+    .goto é uma instrução que permite transferir o controle do programa de um ponto para
+    outro dentro do mesmo escopo de função,
+    .o uso de goto é geralmente desencorajado em programação moderna devido aos problemas
+    que pode causar por tornar o código menos legível e mais difícil de entender e manter; 
+========================================================================================
