@@ -1,0 +1,142 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .O bloco iniciado por símbolo é um tipo de endereçamento cujas capacidades são
+    superiores ao endereçamento por pilhas embora seja mais lento,
+    .o endereçamento de pilha é uma forma de controle do fluxo de execução de um
+    programa,
+    .Características do endereçamento de pilha:
+    .usa parte da memória,
+    .A pilha é uma área de memória gerenciada automaticamente pelo sistema,
+    .geralmente de tamanho fixo,
+    usada para armazenar dados temporários, como variáveis locais e informações de
+    chamadas de função,
+    .abordagem LIFO,
+    .variáveis locais/estruturas com variáveis implementadas localmente/parâmetros 
+    de funções,
+    .não tem o melhor tempo de execução mas evita gastos de memória,
+    .ocorre no tempo de compilação,
+    .Características do endereçamento Heap/Dinâmico:
+    .usa toda a memória,
+    .área de memória usada para armazenar dados dinamicamente alocados durante a
+    execução de um programa,
+    .é possível alocar e desalocar memória no heap conforme necessário durante
+    a execução do programa,
+    .flexibilidade maior,
+    .necessário adiministrar a alocação,
+    .Nenhum componente armazenado dentro da pilha não é válido fora do seu escopo,
+    .segue as regras de escopo global e local,
+    .para o endereçamento dinâmico existe as palavras chaves
+    new/new[]/delete/delete[],
+    .new retorna um tipo de dado,
+    .new pode retornar erro de compilação,
+    .o compilador decide a quantidade de memória a ser alocada,
+    .new é usado para a instância de objetos,
+    .delete equivale a free em C,
+    .para todo new deve ser chamado um delete,
+    .diferente de malloc new não retorna null,
+    .forma de alocação dinâmica da matriz:
+    .para fazer int[][] um dos parâmetros deve ser uma variável,
+    .usar tipos dinamicos para declarar outros componentes do mesmo tipo/assim como 
+    membros que usam endereçamento de pilha,
+    .o erro de alocação de memória pode ser lançado com thorw,
+    .'memory leak' é uma entidade dinâmica que não é mais utilizado pelo programa;
+========================================================================================
+
+========================================================================================
+    .possível utilizar diversas formas de inicialização,
+    .padrão/direta/de cópia,
+    .permitem inicializar componentes de uma forma constante,
+    .a maioria dos tipos de inicialização fazem a conversão de tipos de forma 
+    automática,
+    .No caso da de cópia:
+    .unsigned b6 = -1; ok,
+    .unsigned b7{-1}; erro,
+    .para arrays as inicializações podem ser explícidas ou implícidas:
+    .explícidas: a[3] = {1,2,3},
+    .implícidas: a[] = {1,2,3},
+    .por padrão: d[3] = {1, 2}; a posição [2] é inicializada com 0,
+    .para matrizes a única condição é que o número de colunas esteja sempre presente,
+    . b[][2] = { 1, 2, 3, 4 }; 
+    .Para estruturas:
+    .por padrão: Struct s,
+    .por lista de cópia: Struct s = {1,2}(com base nos campos criados),
+    .ou: Struct s{1,2},
+    .todas essas aplicações estão na pasta 'Inicializar' de src;
+========================================================================================
+
+========================================================================================
+    .um ponteiro contém um valor que equivale a um espaço na memória(ptr*),
+    .agora *ptr retorna o valor armazenado naquele espaço de memória, 
+    .ptr[] acessa o contéudo de um espaço passado por um índice,
+    .void* é um unsigned integer de 32bit/64 bit e suporta operadores aritiméticos,
+    .todo ponteiro pode ser convertido para void*
+    .ptr[i] é igual a *(ptr + i)
+    .& retorna o endereço de uma variável,
+    .T&: a referência de variável podem ser aplicadas para referir o valor do variável,
+    .int& d = c,
+    .o ponteiro também tem um espaço e valor compartilhado com a variável que o ponteiro
+    aponta,
+    .nenhum ponteiro deve ser nulo é necessário que ele aponte para algum ponto na memória,
+    .um ponteiro não pode ter o conteúdo que está apontando mudado,
+    .é recomendável que ponteiros sejam inicializados na criação,
+    .a passagem por referência é semelhante com a forma usada em C: int f(int *a)
+    {return *a;},
+    .a pode ser nulo,
+    .outra forma: int g(int& a){},
+    .agora a não pode ser nulo,
+    .a passagem de vetores podem ser f(int array[]),
+    . o '.' é aplicado para objetos locais,
+    .o '->' é um ponteiro para um objeto;
+========================================================================================
+
+========================================================================================
+    .uma constante é uma expressão que pode ser avaliada no tempo de compilação,
+    .Um literal é um valor fixo que pode ser atribuído a uma constante,
+    .literais representam as constantes,
+    .literais são tipos primitivos/nullptr/strings,
+    .a palavra chave 'const' significa dizer que aquele componente terá o mesmo final
+    até o final da execução, 
+    .evitar atribuir uma constante valores de variáveis mais declarados,
+    .int* -> const int*,
+    .const int* não é igual a qualquer int*,
+    .em const int* para const int* os elementos referenciados não podem mudar,
+    .em const int* o valor do ponteiro não muda,
+    .em const int const* nem o valor do ponteiro nem o referenciado podem mudar,
+    .constexpr especifica que uma expressão pode ser avaliada no tempo de compilação,
+    .constexpr implica em const,
+    .ajuda na performance e uso de memória,
+    .podem impactar no tempo de execução,
+    .não recebe valores dinâmicos como int a = 4/deve receber um valor constante,
+    .const int v1 = 3;  -> constexpr int c1 = v1; ,
+    .também pode ser usado como tipo de retorno em funções,
+    .consteval também garante um bom tempo de retornode funções e deve sempre receber
+    valores constantes,
+    .'consteval' int square(int value),
+    .'constinit' só recebe valores constantes e garante um bom tempo de inicialização
+    de variáveis,
+    .'volatile' é uma instrução para o compilador evitar otimizações agressivas de 
+    memória envolvendo um ponteiro ou um objeto,
+    .usado para programação em baixo nível e multi-thread;
+========================================================================================
+
+========================================================================================
+    .tipos de conversão: ,
+    .comum novovalor = (tipo) valor,  
+    .estático feito em tempo de execução a checagem de tipos,
+    .const cast pode adicionar ou eliminar (remover) constância ou volatilidade,
+    .Exemplos:
+    .static_cast -> char a[] = {1, 2, 3, 4}; -> int* b = (int*) a; ,
+    .const_cast -> const int a = 5; -> const_cast<int>(a) = 3;;  
+========================================================================================
+
+========================================================================================
+    .o comando sizeof retorna o tamanho(em bytes) de um tipo de dado,
+    .retorna um valor size_t,
+    .sizeof(char) sempre retorna 1,
+    .também funciona com valores de ponteiros;
+========================================================================================
+
+========================================================================================
