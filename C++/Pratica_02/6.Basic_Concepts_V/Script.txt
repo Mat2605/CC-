@@ -1,0 +1,79 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .uma declaração vai servir como identificador de uma entidade,
+    .a definição é uma implementação de uma declaração previamente feita, 
+    .para cada declaração apenas uma definição é permitida,
+    .declaração de uma função:void f(int a, char* b); ,
+    .definição de uma função: void f(int a, char* b){...} ,
+    .o uso de componentes sem definição geram tipos incompletos,
+    .uma função é um pedaço de código que executa um conjunto de instruções 
+    específicas,
+    .melhora a organização do código e evita repetições de trechos de código,
+    .um parâmetro pode fazer parte da declaração da função,
+    .um argumento é um valor passado na chamada da função,
+    .na passagem de valor o argumento é apenas copiado e usado nas instruções da 
+    função,
+    .seu valor não é alterado globalmente,
+    .na passagem por ponteiro o endereço de uma variável é copiado e atribuído aos 
+    argumentos de entrada do método,
+    .na passagem por referencia o endereço de memória do valor é passado podendo ser 
+    modificado,  
+    .passagem por referencia em C++: void newmulti(int &a,int &b),
+    .a assinatura de uma função é composta pelo número/tipo e ordem dos parâmetros,
+    .em C++ apenas o retorno da função não é suficiente para diferenciar uma função,
+    .um 'Function overloading' consiste na criação de funções de mesmo nome mas com 
+    assinaturas diferentes,
+    .uma função com parâmetro padrão é uma função que na declaração tem um valor a ser 
+    passado já inicializado,
+    .C++ também permite 'marcar' as funções a fim de especificar de melhor forma o
+    funcionamento,
+    .como [[noreturn]] que indica uma função sem retorno,
+    .[[maybe unused]] indica que uma função possa não ser utilizada,
+    .é possível passar uma função como argumento para outro método diferente;
+========================================================================================
+
+========================================================================================
+    .A expressão do Lambda é um objeto de função de escopo local embutido,
+    .tem a seguinte estrutura: auto x = [capture clause] (parameters) { body },
+    . [capture clause] ->marca a declaração do lambda e como o local os argumentos de 
+    escopo são capturados (por valor, por referência etc.),
+    .Os parâmetros do lambda são parâmetros de função normal (opcional)
+    .o corpo se assemelha a de uma função tradicional,
+    .os valores passados podem ser por valor ou por referência isso é declarado através
+    do primeiro[],
+    .[] não captura nenhum valor,
+    .[=] captura todas as variáveis por valor,
+    .[&] aptura todas as variáveis por referencia,
+    .[var1] captura apenas uma variável por valor,
+    .[&var2] captura apenas uma variável por referência,
+    .os parâmetros de uma função lambda também podem ser inicializados,
+    .suporta consteval e constexpr,
+    .'multable' permite a função a modificar os componentes passados por valor;
+========================================================================================
+
+========================================================================================
+    . uma diretiva de processamento é qualquer linha precedida por um símbolo
+    de hash (#) que informa o compilador: como interpretar o código-fonte antes de
+    compilá-lo,
+    .'macro' é um tipo de diretiva que substituem qualquer ocorrência de um 
+    identificador no código(não é recomendado),
+    .#include faz com que seja incluida no código funções e componentes já existentes
+    em outra bibliotecas,
+    .para expressões MACRO: #define MACRO <expression> e #undef MACRO,
+    .Componente Macro: # define SUB3(a, b) ((a) - (b)),
+    .também são definidos com ifdef/elif/else/endif,
+    .não apresentam escopo,
+    .#difene também pode declarar constantes globais para o programa,
+    .cada diretiva de processamento vai ter uma performance diferente para 
+    cada hardware,
+    .# define SUB(a, b) ((a) - (b)) é igual a constexpr int sub(int a, int b)
+    {return a - b;},
+    .Macros úteis: __Line__/__File__/__Date__/__Time__,
+    .# if __has_include(<iostream>)# include <iostream># endif retorna se um arquivo
+    de origem existe,
+    .#error e #warning exibem mensagens de erro personalizadas durante o período
+    de compilação;
+========================================================================================
