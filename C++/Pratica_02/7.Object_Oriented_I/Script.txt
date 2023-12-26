@@ -1,0 +1,99 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .é possível definir classes em C++ usando struct,   
+    .classes extendem o conceito de 'struct' ao também considerar métodos declarados
+    dentro de seu escopo como membros,
+    .'struct' representam objetos passivos armazenados na memória,
+    .'class' representam objetos ativos não armazenados na memória até a sua instância,
+    .uma classe tem seus componentes podendo ser objetos de outras classes/variáveis/
+    funções,
+    .é necessário adiministrar o uso e necessidade de cada objeto,
+    .Esquema de declaração: class PrimeiraEmC; class PrimeiraEmC{};,
+    .Lembrete: em estruturas também é possível criar funções,
+    .uma classe que deriva/herda componentes de outra é denominada de classe filha
+    ou subclasse,
+    .e essa classe que tem seus componentes derivados é chamada de superclasse,
+    .uma subclasse extende uma superclasse recebendo os componentes atribuidos dentro
+    da classe 'mãe',
+    .permite a criação de métodos construtores para inicializar os componentes da
+    classe na inicialização,
+    .para herdar uma classe: class B : public class A,
+    .outro pilar para POO é o encapsulamento que permite definir o escopo de acesso 
+    para componentes de uma classe podendo variar entre public/private/protected,
+    .um membro public é visível para todos os arquivos dentro de uma pasta e permite
+    o acesso direto as variáveis sem a necessidade de um método para inserir
+    ou retornar um valor,
+    .um membro private só pode ser acessado através de métodos get/set que servem 
+    para o retorno e inserção de valores, 
+    .um membro protected só é acessado por outros membros da classe de origem e pelas
+    suas subclasses,
+    .um construtor deve inicializar todas as variáveis,
+    .default é public;
+========================================================================================
+
+========================================================================================
+    .é possível usar vários construtores para uma mesma classe(polimorfismo),
+    .qualquer construtor é constexpr(resolvido em tempo de compilação),
+    .um construtor pode possuir parâmetros ou não,
+    .toda classe tem um construtor implícito ou explícito,
+    .se tiver construtor com parâmetros valores devem ser passados ao objeto na
+    instânciação,
+    .é possível atribuir um valor a um componente de classe na sua criação,
+    .a inicialização dos componentes com valores seguem a ordem de declaração feita
+    anteriormente,
+    .inicializar qualquer objeto independente do tipo
+    .os construtores das classes não são herdados,
+    .construtor de subclasses levando em conta a superclasse:B2() : A() {cout << "B";},
+    .construtores são chamados na seguinte ordem: superclasse -> subclasses,
+    .é possível criar um construtor usando outros construtores dessa mesma classe,
+    .operador de conversão é marcado como explicit significa que o compilador não 
+    realizará automaticamente conversões implícitas ou inicializações por cópia se 
+    passa ou utiliza esse construtor/operador com um único argumento,
+    .possível usar [[nodiscard]] para classes e construtores,
+    .explicit B();
+========================================================================================
+
+========================================================================================
+    .é possível criar um objeto com base em um já existente T(const T&),
+    .chamado 'construtor de cópia',
+    .útil para inicializar um objeto recem criado/objeto passado como parâmetro/
+    retornado de uma função,
+    ."Deleted Copy Constructor" ocorre quando o compilador automaticamente marca
+    o construtor de cópia como excluído em determinadas situações:
+    .Se a classe tem um membro não estático ou uma classe base de tipo 
+    referência ou constante o construtor de cópia é excluído,
+    .Se a classe tem um membro não estático ou uma classe base de tipo referência ou
+    constante o construtor de cópia é excluído,
+    .Se a classe tem um membro não estático ou uma classe base cujo destrutor é excluído 
+    ou inacessível o construtor de cópia da classe é excluído,
+    .o destruidor de um componente tem a seguinte expressão: ~T(){},
+    .todo objeto pode ter um destruidor que é declarado implícitamente;
+========================================================================================
+
+========================================================================================
+    .this é usado para acessar a um componente declarado dentro da própria classe,
+    .é necessário quando um parâmetro e um componente de classe possuem o mesmo nome,
+    .um membro pode ser static,
+    .é compartilhado com todas as classes e não é preciso ter a classe instanciada 
+    para acessar Classe::membro_estático,
+    .um membro estático pode acessar apenas outros membros estáticos,
+    .um membro não estático pode acessar qualquer componente,
+    .uma função de membro de uma classe é declarada como const e é chamada de função de
+    membro constante,
+    .Essa declaração indica que a função não modificará o estado lógico do objeto ao
+    qual pertence,
+    .declaração: int get1() const { return x; },
+    .membros mutable gera instâncias de classes mutáveis,
+    .using pode ser utilizado para referir a classe com outro nome,
+    .pode utilizar using para herdar membros de uma classe base e modificá-los na 
+    classe derivada,
+    .uma classe friend permite acessar diretamente membros privados/protegidos da
+    classe declarada como 'amiga',
+    .não é simétrico/transitivo/não herdado,
+    .também pode fazer isso com métodos na declaração e desenvolve-lós fora da classe,
+    .'delete' inválida o uso de componentes de classe; 
+========================================================================================
+
