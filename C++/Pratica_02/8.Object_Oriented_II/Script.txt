@@ -1,0 +1,96 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .uma classe base pode aplicar o polimorfismo e criar dentro de seu escopo várias
+    funções com mesmo nome mas com assinaturas diferentes(Overloading),
+    .esse caso é um exemplo de polimorfismo de sobrecarga,
+    .subclasses usam o conceito quando criam uma versão própria de um método definido
+    na superclasse,
+    .é um exemplo de polimorfismo de sobrescrita,
+    .Overloading é um polimorfismo estático(polimorfismo de tempo de compilação),
+    ."Binding" refere-se à associação entre uma chamada de função e o corpo da função,
+    .existem dois tipos principais de binding:
+    .em Early Binding o tipo do objeto é identificado pelo compilador durante 
+    o tempo de compilação,
+    .O programa pode direcionar diretamente para o endereço da função,
+    .em Late Binding o tipo do objeto é identificado em tempo de execução,
+    .A chamada de função é correspondida à definição correta durante a execução,
+    .'virtual' é usada em conjunto com funções em uma classe base 
+    para indicar que essas funções podem ser sobrescritas por funções equivalentes em
+    classes derivadas, 
+    .virtual table(vtable) é uma tabela de busca de funções utilizada para resolver
+    chamadas de funções e dar suporte a despacho dinâmico,
+    .uma tabela virtual contém uma entrada para cada função virtual que pode ser 
+    chamada por objetos da classe,
+    .cada entrada nesta tabela é simplesmente um ponteiro de função que aponta para
+    a função mais derivada acessível por essa classe,
+    .representa a ordem de chamada das funções virtuais,
+    .'override' sinaliza que a função é virtual e deve ser sobrescrita de uma 
+    classe base,
+    .'override' implica 'virtual',
+    .'final' impede que uma função 'sofra' override com a mesma assinatura,
+    .uma classe também pode ser 'final' e funciona como classe abstrata,
+    .não existem destrutores 'virtual',
+    .não é possível chamar métodos virtuais em construtores e destrutores,
+    .funções virtuais sem corpo devem ser implementadas na subclasses,
+    .são funções abstratas,
+    .declaração: virtual void f() = 0;,
+    .uma classe é uma interface se apresenta apenas métodos virtuais;
+========================================================================================
+
+========================================================================================
+    .'Class-casting' permite a conversão explícita ou implícita entre a hierarquia
+    de classes,
+    .Upcasting refere-se à conversão de uma referência ou ponteiro de uma classe 
+    derivada para uma classe base,
+    . Pode ser implícito ou explícito e é considerado seguro,
+    .O upcasting pode ser realizado usando `static_cast` ou `dynamic_cast`,
+    .Downcasting é a conversão de uma referência ou ponteiro de uma classe base para
+    uma classe derivada,
+    .conversão é explicita pode ser perigosa e requer cuidado,
+    .A realização do downcasting é possível usando `static_cast` ou `dynamic_cast`,
+    .Sidecasting é a conversão entre uma referência ou ponteiro de uma classe para
+    outra classe no mesmo nível hierárquico,
+    .é explicito e pode ser arriscado,
+    .é geralmente implementado usando `dynamic_cast`;
+========================================================================================
+
+========================================================================================
+    .'Operator overloading' é um caso especial de polimorfismo no qual alguns 
+    operadores são tratados como funções polimórficas e têm comportamentos diferentes
+    dependendo do tipo de seus argumentos,
+    .Point operator+(const Point& p) const sobrecarga o operador '+' e realiza a adição
+    de objetos do mesmo tipo,
+    .<==> encapsula </>/==,
+    .operador [] permite acessar um objeto como se fosse um array,
+    .exemplo: char operator[](char c) const {return permutation[c - 'a'];},
+    .operator() é usado para tornar um objeto comportar-se como uma função,
+    .também pode ser declarado como static,
+    .operator pode ser usado como ++ ou --,
+    .operator()= copia o valor de um objeto para outro de mesmo tipo,
+    .operator<< pode ser alterado para atuar como comando de input/ouput,
+    .friend void swap é uma declaração em uma classe C++ que indica que a função 
+    swap tem permissão para acessar membros privados ou protegidos dessa classe,
+    .operadores binários devem ser declarados como friends;
+========================================================================================
+
+========================================================================================
+    .aggregateé um tipo que suporta inicialização de agregado 
+    (um tipo de inicialização de lista) usando a sintaxe de chaves {},
+    .Um agregado pode ser um array ou uma classe que atende às seguintes condições:
+    .não possui construtores fornecidos pelo usuário (não inclui construtores padrão),
+    .Não possui membros de dados não estáticos privados/protegidos,
+    .Não possui funções virtuais,
+    .Não possui classes base,
+    .Não possui inicializadores de chaves ou valores padrão para membros de dados 
+    não estáticos,
+    .uma classe trivial não pode ter membros privados/protegidos não estáticos,
+    .não possuir funções virtuais,
+    .não herdar de uma classe base não trivial,
+    .Uma classe de layout padrão é uma classe com o mesmo layout de memória do
+    C equivalente struct ou união;
+========================================================================================
+
+
