@@ -1,0 +1,55 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .'templates' é um mecanismo para programação genérica para garantir espaços de uma
+    estrutura de um entidade,
+    .pode representar uma família de classes/funções/variáveis,
+    .pode ser uma opção para evitar sobrecarga quando o número de métodos a serem 
+    criados é indefinido,
+    .opera com tipos genéricos,
+    .podendo funcionar com a passagem de vários tipos de dados,
+    .declaração: template<typename T>,
+    .pode gerar códigos menores e mais reutilizáveis,
+    .tem um excelente tempo de compilação,
+    .porém apresentam uma gramática complicada,
+    .ao chamar o template são substituidos os 'parâmetros template' para tipos 
+    primitivos passados, 
+    .A instanciação implícita do modelo ocorre quando o compilador gera código
+    dependendo dos tipos de argumento deduzidos ou dos argumentos de modelo explícitos, 
+    .Exemplo: função 'f' é genérica| chamada: f(3);,
+    .A instanciação explícita do modelo ocorre quando o compilador gera código
+    dependendo apenas dos argumentos de modelo explícitos especificados na declaração,
+    .Exemplo: f<short>(3.0);,
+    .considerando f<short>(2.0)  typename T é um parâmetro template(pode ser genérico
+    ou não) e short é um argumento template(não pode ser genérico),
+    .ainda podem ter parâmetros templates fixos: template<int A = 3>,
+    .pode ainda ser sobrescrito se chamar print1<2>();,
+    .funções genéricas void só são compiladas caso chamadas,
+    .e podem ser inicializados com parâmetros pré declarados,
+    .template<int A, int B = A + 3> : f<3>();,
+    .funções genéricas também podem ser sobrecaregadas sendo necessário a mudança no
+    número de parâmetros passados,
+    .parâmetro template podem ser estruturas/enumerações/classes/auto,
+    .Exemplo: template<auto X, auto Y> void g2() {} g2<2, 'a'>();;
+========================================================================================
+
+========================================================================================
+    .static assert é usado para testar uma asserção de software em tempo de compilação,
+    .se falhar o programa não compila,
+    .using pode declarar novos tipos para parâmetros de template,
+    .Exemplo: 
+    .typedef int distance_t; using distance_t = int;,
+    .'decltype' captura um tipo de entidade ou expressão;
+========================================================================================
+
+========================================================================================
+    .Introspecção é a capacidade de inspecionar um tipo e consultar suas propriedades,
+    .Reflexão é a capacidade de um programa de computador examinar/introspectar/modificar
+    sua própria estrutura e comportamento,
+    .'Type Trains' definem uma interface de tempo de compilação para consultar ou
+    modificar as propriedades de Tipos,
+    .para utilizar é necessário  include <type_traits> 
+    .na biblioteca está contidas várias funções type_traits;
+========================================================================================
