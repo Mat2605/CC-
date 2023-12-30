@@ -1,0 +1,56 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .template de classes podem gerar famílias de classes,
+    .declaração dos objetos:  ClasseComGenerico<int> obj;,
+    .pode ter especialização total(class A<float,int>) ou parcial(class A<T,int>),
+    .especialização:
+    .template genérico(template<typename T, typename R> class A),
+    .template parcial(template<typename T> class A<T,int>),
+    .é possível declarar uma funções genérica dentro de uma classe genérica,
+    .uma ou ambas devem ter especialização total,
+    .é possível que em especializações diferentes de um modelo de dados pode ter 
+    membros de dados diferentes,
+    .a estrutura pode ser adaptada para armazenar diferentes tipos de dados ou ter
+    membros específicos para casos especializados,
+    .o compilador deve saber com antecedência se um símbolo dentro da estrutura é um 
+    tipo ou um membro estático,
+    .'typename' chamado anteriormente evita esse problema,
+    .'template' sempre indica ao compilador que o componente a seguir é um
+    'nome template',
+    .Templates são uma característica em tempo de compilação,
+    .Funções virtuais são uma característica em tempo de execução;
+========================================================================================
+
+========================================================================================
+    .Metaprogramação é a prática de escrever programas de computador com a capacidade
+    de tratar programas como seus próprios dados,
+    .um programa pode ser projetado para ler, gerar, analisar ou transformar
+    outros programas
+    ."Template meta-programming" refere-se ao uso do sistema de templates,
+    .é rápido(tempo de execução) mas com grande tempo de compilação,
+    .aplicação complexa;
+========================================================================================
+
+========================================================================================
+    .SFINAE aplica-se durante a resolução de sobrecarga de modelos de função,
+    .Quando a substituição do tipo deduzido para o parâmetro de modelo falha a 
+    especialização é descartada do conjunto de sobrecargas em vez de causar um erro de
+    compilação,
+    .para aplicar é necessário usar o type traits: std::enable if/std::enable_if_t,
+    .pode ser utilizada para verificar se existe um componente em uma estrutura; 
+========================================================================================
+    .'Variadic Templates' recebem um número indefinido de parâmetros de um mesmo tipo,
+    .pode ser aplicado em classes e em funções,
+    .template<typename... TArgs> ,
+    .o número de parâmetros pode ser obtido por sizeof(),
+    .'Folding expressions' combinar elementos sucessivos de uma sequência usando um 
+    operador binário específico,
+    .podem formar operações recursivas,
+    .'concepts' são extensões de template,
+    .permite obter um tempo de compilação para a validação dos argumentos template,
+    .deve envolver equações primárias;
+========================================================================================
+ 
