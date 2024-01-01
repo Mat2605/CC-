@@ -1,0 +1,93 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .'headers' permitem a criação de interfaces com sua implementação feita em 
+    outro arquivo(.cpp), 
+    .os arquivos .hpp são implementados por .cpp que é chamado na compilação,
+    .escopo consiste na região do código em que o componente pode ser acessado 
+    diretamente,
+    .componentes dentro de funções/classes/estruturas apresentam escopo local,
+    .componentes globais podem ser acessados em qualquer parte do código,
+    .linker combina diversos módulos ou unidades de código-fonte compilados 
+    em um único programa executável,
+    .'Linkage' refere a visiabilidade dos componentes para o linker,
+    .'No Linkage' indica símbolos no escopo local de declaração e não visíveis ao 
+    linker,
+    .'Internal Linkage' se refere a símbolos visíveis apenas no escopo de uma única 
+    unidade de tradução com um mesmo nome de símbolo tendo diferentes endereços de 
+    memória em unidades de tradução distintas,
+    .'External Linkage' se refere a entidades acessíveis fora de uma única unidade de
+    tradução;
+========================================================================================
+
+========================================================================================
+    .'storage duration' determina a duração de variáveis,
+    .Tipos de 'Duração do armazenamento':
+    .Duração Automática de Armazenamento: Variáveis locais temporárias alocadas 
+    automaticamente em registradores ou pilha,
+    .Se não forem inicializadas explicitamente seus valores são indefinidos,
+    .Duração Estática de Armazenamento: O armazenamento de um objeto é alocado 
+    quando  o programa inicia e desalocado quando o programa termina,
+    .Se não for inicializado explicitamente é inicializado com zero,
+    .Duração Dinâmica de Armazenamento: O objeto é alocado e desalocado usando 
+    funções de alocação de memória dinâmica,
+    .Se não for inicializado explicitamente o conteúdo de sua memória é indefinido,
+    .Duração de Armazenamento de Thread: O objeto é alocado quando a thread inicia e 
+    desalocado quando a thread termina,
+    .Cada thread tem sua própria instância do objeto,
+    .variáveis locais estáticas são alocadas quando o programa se inicializa/função
+    é chamada e desalocado quando se encerra,
+    .Variáveis globais ou funções declaradas com static ou no namespace anônimo:
+    São visíveis apenas dentro do arquivo possuindo "internal linkage",
+    .Variáveis ou funções com static ou no namespace anônimo: Visíveis apenas 
+    dentro do arquivo possuem "internal linkage",
+    .Variáveis ou funções globais não estáticas com o mesmo nome em diferentes 
+    unidades de tradução: Gera colisão de nomes extern declara variáveis ou 
+    funções globais em  outras unidades de tradução estabelecendo 
+    "external linkage",
+    .Uso de extern:Variáveis ou funções devem ser definidas em uma única unidade 
+    de tradução,
+    .é redundante para funções necessário para variáveis para evitar associação de 
+    memória na unidade de tradução atual,
+    .Comportamento indefinido com o mesmo identificador aparecendo com ambas 
+    as linkages,
+    .const e constexpr são do tipo Linkage Interna, 
+    .static const e static constexpr são redundantes,
+    .NO LINKAGE: variáveis/funções/classes, 
+    .INTERNAL LINKAGE: funções e variáveis estáticas,
+    .EXTERNAL LINKAGE: enumerações/classes com membros estáticos/não estáticos;
+========================================================================================
+
+========================================================================================
+    .um headers pode ser incluído em mais de um arquivo tipo cpp,
+    .um arquivo hpp pode extender outro arquivo hpp,
+    .comando para execução: g++ arquivo.cpp arquivo.hpp -o executavel,
+    .One Definition Rule (Regra de Uma Definição) em C++ que diz que uma entidade
+    (variável, função, etc.) não pode ter mais de uma definição no programa,
+    .os componentes de headers únicos não podem possuir mais de uma declaração,
+    .Um objeto ou função não-inline não podem ter mais de uma definição,
+    .Entidades com linkage interno em diferentes unidades de tradução são permitidas
+    mesmo se seus nomes e tipos forem iguais,
+    .Templates/tipos/funções/variáveis inline podem ser definidos em mais de uma
+    unidade de tradução,
+    .declaração inline: void f(){},
+    .Templates/tipos/funções/variáveis inline podem ser definidos em mais de um 
+    arquivo hpp,
+    .inline indica ao compilador que o corpo da função deve ser substituído 
+    diretamente no local de chamado,
+    .pode ser implementado em vários arquivos,
+    .melhora a eficiência do algoritmo,
+    .recomendável para funções menores,
+    .funções constexpr são inline mas variáveis constexpr não são implicitamente,
+    .O uso de inline é uma sugestão ao compilador para substituir o corpo da função 
+    diretamente no local de chamada,
+    .Cada classe (incluindo definições de membros) deve ter apenas uma definição 
+    única em todo o programa,
+    .Se a definição da classe estiver em um arquivo de cabeçalho e esse cabeçalho for
+    incluído em várias unidades de tradução (arquivos .cpp),
+    .pode haver problemas se não forem tomadas precauções para evitar múltiplas definições,
+    .As definições completas de templates (incluindo membros) geralmente devem estar na mesma 
+    unidade de tradução onde são usadas;
+========================================================================================
