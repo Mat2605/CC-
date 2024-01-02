@@ -1,0 +1,87 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .O protetor de inclusão evita o problema de várias inclusões de um arquivo de 
+    cabeçalho em um unidade de tradução,
+    .# ifndef HEADER_HPP // include guard
+    .#pragma once a diretiva de pré-processador é uma alternativa ao protetor de 
+    inclusão para forçar arquivo atual a ser incluído apenas uma vez em uma unidade
+    de tradução,
+    .include #pragma/guard deve ser aplicado em todo arquivo hpp,
+    .Include Guard permite um arquivo cpp incluir dois arquivos hpp relacionados 
+    entre si,
+    .Forward declaration é uma declaração de um identificador para o qual uma 
+    definição completa ainda não deu,
+    ."Forward" significa que uma entidade é declarada antes de ser definida,
+    .indica ao compilador que uma classe/função/ou outro símbolo será definido mais
+    tarde no código permitindo que você use esse símbolo antes da sua implementação
+    completa,
+    .poupa tempo de compilação em relação a include,
+    .'circular dependency' é uma relação entre dois ou mais módulos que direta ou 
+    indiretamente dependem uns dos outros para funcionar corretamente,
+    .cada headers deve ter # pragma once;
+========================================================================================
+
+========================================================================================
+    .um módulo é um conjunto de arquivos são compilados de forma independente junto com
+    os componentes incluídos,
+    .composto um ou mais módulos,
+    .mais eficiente que includes/melhor tempo de compilação,
+    .'Visibility of names' permite o uso de um arquivo por outro,
+    .'Reachable of declarations' cada declaração visível também pode ser acessada nem 
+    todas as declarações acessíveis também são visíveis,
+    .Unidade de Interface de Módulo:é uma unidade de módulo que exporta um símbolo 
+    e/ou nome de módulo ou nome de partição de módulo,
+    .Unidade de Interface de Módulo Primária:é uma unidade de interface de módulo que 
+    exporta o nome do módulo. Deve haver uma e apenas uma unidade de interface de 
+    módulo primária em um módulo,
+    .Unidade de Implementação de Módulo:é uma unidade de módulo que não exporta um
+    nome de módulo ou nome de partição de módulo,
+    .Conteúdo da Unidade de Interface de Módulo:Uma unidade de interface de módulo deve 
+    conter apenas declarações se uma ou mais unidades de implementação de módulo 
+    estiverem presentes,
+    .Uma unidade de implementação de módulo implementa/define as declarações das 
+    unidades de interface de módulo,
+    .criação modulo: module my.module;,
+    .import my.module;,
+    .também é possível  exportar:export module <module name>,
+    .funciona como bibliotecas de funções,
+    .import iostream > include iostream,
+    .um modulo pode importar outro porém não é possível exportar,
+    .componentes estáticos/namespace desconhecidos não podem ser exportados,
+    .deve começar declarando module; na primeira linha de código,
+    .um modulo pode ser privado| module:private,
+    .Um fragmento de módulo privado possibilita que um módulo seja representado como 
+    uma única unidade de tradução sem expor todo o seu conteúdo aos importadores,
+    .Isso permite uma encapsulação mais controlada onde apenas as partes selecionadas
+    do módulo são disponibilizadas externamente mantendo outras informações internas 
+    inacessíveis aos importadores,
+    .um módulo pode ser separado em subpartes:
+    export module module_name : partition_name;
+========================================================================================
+
+========================================================================================
+    .namespace permitem agrupar entidades nomeadas que teriam escopo global dando a 
+    elas um escopo mais restrito,
+    .chamado de escopo de namespace (onde "std" representa "standard"),
+    .oferecem uma flexibilidade mais ampla em termos de extensão e podem ser usados
+    para operações sem estado,
+    .A palavra-chave using em namespaces é mencionada como uma forma de evitar a 
+    repetição do especificador de namespace ao estender suas funcionalidades,
+    .namespace podem ser renomeados: namespace ns = nome_antigo;,
+    .'inline namespace' é um mecanismo que faz com que um namespace aninhado pareça 
+    e funcione como se todas as suas declarações estivessem no namespace circundante,
+    .compilação para arquivos objetos:g++ -c source.cpp -o source.o,
+    .uma biblioteca contém variáveis e funções que podem ser executadas durante a
+    criação de código,
+    .uma biblioteca estática deve ser implementada no código,
+    .Uma biblioteca dinâmica consiste em rotinas carregadas na aplicação em tempo
+    de execução,
+    .se um programa é compilado com uma biblioteca dinâmica esta não faz parte do 
+    executável final permanecendo como uma unidade separada,
+    .Uma biblioteca dinâmica pode ser modificada sem a necessidade de recompilação,
+    .possível criar bibliotecas via terminal,
+    .devem ter nomes únicos;
+========================================================================================
