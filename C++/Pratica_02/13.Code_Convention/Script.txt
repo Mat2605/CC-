@@ -1,0 +1,69 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .diretórios fundamentáis:
+    .'include' contém headers públicos,
+    .'src' contém headers privados e arquivos .cpp,
+    .'test' arquivos para teste do programa,
+    .'bin' arquivos executáveis,
+    .'doc' documentação,
+    .'build' files intermediários,
+    .outras pastas podem ser criados(cmake,por exemplo),
+    .'Readme.md' informações gerais do projeto,
+    .'LICENSE' descreve como o projeto pode ser usado e distribuido,
+    .'CMakeLists.txt' descreve como o projeto pode ser compilado,
+    .header:.h .hh .hpp .hxx,
+    .implementação header:.i.h .i.hpp -inl.h .inl.hpp,
+    .source: .c .cc .cpp .cxx,
+    .devem ter o mesmo nome da classe que implementam,
+    .headers públicos em include/arquivos fontes em src,
+    .a main deve estar em cpp,
+    .é necessário manter a consistencia durante a criação do código,
+    .controlar o uso dos 'includes' para minimizar depêndencias,
+    .o arquivo/biblioteca a ser adicionados podem ser adicionados por ""/<>;
+========================================================================================
+
+========================================================================================
+    .Evitar uso de Macros em headers,
+    .se for usar declarar após os includes e colocar fora dos namespace,
+    .definição geral: # if defined(MACRO)...#endif,
+    .Evitar usar namespace globais e sobrecarga,
+    .Não usar namespaces sem nome,
+    .Evitar variáveis globais não constantes,
+    .usar variáveis de tipo fixo e true/false para boolenaos,
+    .Evitar a sobrecarga de funções(buscar usar tipos genéricos),
+    .dividir funções maiores em sub funções,
+    .usar inline para funções pequenas,
+    .procurar sempre passar por referência,
+    .passe argumentos com const caso não sejam alterados durante a função,
+    .não declarar funções com um grande número de parâmetros,
+    .aderir a enumerações a boleanos como parâmetros,
+    .struct apenas para objetos passivos que carregam dados de resto optar 
+    por classes,
+    .inicializar todos os campos do objeto com o construtor,
+    .evitar métodos virtuais em construtores,
+    .Herança múltipla e herança virtual são desencorajadas,
+    .seguir a sequência de membros: public/protected/private,
+    .primeiro as variáveis depois os métodos(com o mesmo escopo das variáveis),
+    .inicializar as variáveis no construtor com: componente{variável},
+    .evitar trechos de código redundante ou desnecessários,
+    .exemplo: if (condition){ //errado!!< code1>return;}else // 
+    <-- redundant < code2 >,
+    .usar continue/break/return para simplificar o código,
+    .não misturar signed com unsigned;
+========================================================================================
+
+========================================================================================
+    .usar [[deprecated]] / [[noreturn]] / [[nodiscard]] para indicar o comportamento
+    da função,
+    .usar nomes simbólicos para variáveis com determinada função,
+    .usar sizeof(variable/value) do que sizeof(type),
+    .evitar nomes muito complexos para variáveis,
+    .i/j/k/l para loops é o suficiente,
+    .Tipos de declaração: CamelStyle/snake_style/MACRO_STYLE,
+    .em operações separar os componentes com 'space';
+========================================================================================
+
+========================================================================================
