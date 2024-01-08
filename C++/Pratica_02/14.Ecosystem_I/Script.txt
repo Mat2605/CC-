@@ -1,0 +1,66 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .desenvolvedores passam 30-50% do tempo buscando 'debugar' o código e buscar um 
+    resultado satisfatório,
+    .um algoritmo pode ter um defeito caso ele tenha um rendimento abaixo do esperado
+    em algum aspecto,
+    .'falha' é quando um algoritmo não consegue realizar o que lhe foi proposto,
+    .defeitos podem ser captados por uma análise dinâmica ou estática,
+    .análise dinâmica age durante o tempo de execução do programa e não consegue 
+    abranger todas as instâncias do algoritmo(exemplo de aplicação: prints durante
+    o programa),
+    .a análise estática é uma estrategia proativa que examina o código a procura de
+    possíveis erros(exemplo de aplicação: 'Warnings'),
+    .Gasta mais tempo com o aumento da complexidade do código,
+    .alguns erros são reversiveis ou fatais(impedem o funcionamento do programa
+    |o programa deve terminar),
+    .erros fatais podem ser evitados/manipulados usando assert,
+    .para executar o programa e 'debugar': 
+    .g++ -O0 -g [-g3] <program.cpp> -o program,
+    .gdb [--args] ./program <args...>,
+    .o programa falha quando tiver os seguintes erros:
+    .breakpoint (by using the debugger)|assertion fail|segmentation fault
+    |trigger software breakpoint,
+    .também é levado em consideração a memória durante a fase de teste do software,
+    .análise dinâmica e estática podem ser utilizados nesse caso,
+    .dados sobre o uso de memória podem ser vistos com o comando 
+    $valgrind ./program <args...>,
+    .programas robustos evitam o vazamento de memória,
+    .tipos de vazamento de memória:
+    .Perda definitiva: indica blocos que não são deletados no final do programa,
+    .Perda indireta: Indica blocos apontados por outras variáveis de heap que não 
+    são excluídas,
+    .O caso comum são variáveis globais que apontam para memória de heap 
+    recém-alocada,
+    .Ainda recuperável: indica blocos que não são excluídos mas que ainda podem ser 
+    acessados no fim do programa,
+    .Perda Possível: indica blocos que ainda estão acessíveis mas a aritmética do 
+    ponteiro faz com que o exclusão mais complexa,
+    .comandos de  valgrind: valgrind --leak-check=full --show-leak-kinds=all
+    --track-fds=yes --track-origins=yes ./program <args...>,
+    .'sanitizers' auxilia a análise dinâmica,
+    .é usado durante o desenvolvimento e teste para descobrir e diagnosticar
+    a memória bugs de uso indevido e comportamento indefinido potencialmente 
+    perigoso,
+    .presente em clag/gcc/Xcode,
+    .Address Sanitizer|Leak Sanitizer|Memory Sanitizers|Undefined Behavior Sanitizer|
+    são comandos sanitizers,
+    .comando 'scan-build make' para usar análise estática com clag,
+    .existem diferentes comandos para a execução de análise estática,
+    .'Unit Test': Uma unidade é a menor parte do código que pode ser logicamente 
+    isolada em um sistema,
+    .Teste de unidade refere-se à verificação de uma unidade,
+    .'Functional Test': Validação de saída em vez da estrutura interna, 
+    .Metas: desempenho|regressão|estabilidade|segurança|capacidade de composição,
+    .Para teste os blocos de código devem ser isolados entre si a fim de evitar 
+    interferencias externas,
+    .mais fácil de manipular/corrigir em casos de erros,
+    .Processo de Test-Driven Development(TDD):
+    .Escreva o código para realizar uma funcionalidade,
+    .Escreva o código mínimo para passar no teste,
+    .Melhorar/refatorar o código que itera com a verificação de teste,
+    .Volte para 1;
+========================================================================================
