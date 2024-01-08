@@ -1,0 +1,39 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .Existem várias ferramentas úteis para o teste de um código em c++,
+    .Cmake é um conjunto de ferramentas com código aberto buscando a construção/
+    armazenamento/teste de softwares,
+    .CMake é usado para controlar o processo de compilação de software usando 
+    plataforma simples e arquivos de configuração independentes do compilador,
+    .gerar Makefile/Ninja nativo e espaços de trabalho que podem ser usados no ambiente
+    do compilador de sua escolha,
+    .project(my_project_name),
+    .add_executable(program program.cpp) #comando de compilação,
+    .comando de execução: 
+    .$ mkdir build,
+    .$cd build,
+    .$cmake .. # busca o diretório de origem,
+    .$make # makefile gerado automaticamente,
+    .em um arquivo camke é possível declarar variáveis,
+    .no terminal é possível inserido valores para as variáveis no cmake,
+    .Ctest é uma ferramenta de testa integrado ao Cmake,
+    .é usado para automatizar a atualização/configurando/construindo/testando/
+    executando verificação de memória,
+    .comando de execução: $ make test,
+    .Mais comandos:
+    .$ ctest -R Python # compila todos os testes que contém a string python,
+    .$ctest -E Iron # compila todos os testes que contém a string iron,
+    .$ctest -I 3,5 # compila testes de 3 a 5,
+    .doxygen é uma ferramenta para gerar documentação de um código,
+    .é necessário adicionar os campos: @file/@brief/@param/@tparam/@return,
+    .cloc:conta linhas em branco/linhas de comentário/linhas físicas do código-fonte
+    em muitos linguagens de programação,
+    .'Compiler Explorer' é uma ferramenta interativa que permite ver o código assembly
+    de um arquivo fonte/gráfico de fluxo de controle/dica de otimização,
+    .CppInsights permite visualizar passo a passo o processo de compilação,
+    .Existem IA que auxiliam na criação do código(exemplo: TabNine),
+    .grep.app permite buscar arquivos em vários repositórios no github;
+========================================================================================
