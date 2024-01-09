@@ -1,0 +1,43 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .a biblioteca iostream contém funções para a entrada e saída de dados,
+    .o conteúdo do buffer não é escrito no disco,
+    .cout/cin(para saída e entrada)/cerr/clog(indicam erros),
+    .flush: libera o cout do fluxo de saída,
+    .endl realiza a quebra de linha,
+    .flush e endl forçam o programa a sincronizar com o terminal(custo alto),
+    .cout permite 'printar' saídas em dec/hex/oct/sequência de bits,
+    .para a sequência de bits é necessário: #include <bitset>,
+    .<iomanip> permite especificar o número de casas decimais na saída,
+    .Exemplo:cout ≪ setprecision(2) ≪ 3.538;,
+    .além de permitir especificar a saída de flutantes na forma fixa/científica,
+    .a junção de string também é possível,
+    .Exemplo: cout ≪ right ≪ setw(7) ≪ "abc" ≪ "##"; → abc#,
+    .cin permite a entrada de mais de um valor,
+    .<fstream> permite a manipulação de arquivos,
+    .para operações até acabar um arquivo:
+    while(fin.peek()!=std::char_traits<char>::eof()),
+    .fin.eof() também indica o fim de um arquivo;
+========================================================================================
+    .<math>/<limits>/<cmath>/<numeric> auxiliam operações aritiméticas,
+    .<string> é uma biblioteca de funções para a manipulação de cadeia de caracteres,
+    .permite diversas formas de declaração,
+    .para concatenar strings basta: string concat = string1 + string2,
+    .é possível converter strings para variáveis primitivos,
+    .string view descreve uma interface comum mínima para interagir com dados de cadeia
+    de caracteres,
+    .permite criar membros constexpr,
+    .rand()/srand() produz números aleatórios de uma maneira não satisfatória,
+    .é melhor produzir via pseudo random number generation (PRNG),
+    .com uma 'seed' o gerador sempre produzirá o mesmo resultado,
+    .sendo necessário gerar randomicamente com distribuições padronizadas,
+    .diversas formas de perceber o tempo: clock(linux)/cpu/tempo do sistema, 
+    .<utility> permite operações com pares de valores,
+    .<tuple> permite criar e gerenciar valores em tuplas,
+    .<variant> permite a manipulação de unioes,
+    .<optional> fornece facilidades para representar potenciais estados "sem valor",
+    .<filestream> lida com a manipulação de arquivos e diretórios;
+========================================================================================
