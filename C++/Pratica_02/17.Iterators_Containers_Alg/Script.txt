@@ -1,0 +1,82 @@
+Material Oferecido por: Federico Busato - Modern C++ Programming
+
+========================================================================================
+
+========================================================================================
+    .'container' é uma classe/estrutura de dados/tipo abstrato de dados cujas 
+    instâncias são coleções de outros objetos,
+    .é uma estrutura de dados que armazena elementos e permite o acesso de forma 
+    eficiente,
+    .'iterator' é um objeto que permite atravessar um 'container',
+    .é uma generalização de ponteiros,
+    . Um iterator é um objeto que permite a iteração sobre os elementos de um 
+    container,
+    .Ele fornece uma interface para acessar sequencialmente os elementos do 
+    container,
+    .esses conceitos compoem  Standard Template Library(STL), 
+    .apresenta os métodos begin() e end() para obter objetos 'iterator',
+    .tipos de 'container': std::array(vetor de tamanho fixo),
+    .std::vector(vetor de tamanho dinâmico|deleta um elemento no final),
+    .std::list(lista duplamente encadeada|inserir e deletar em qualquer posição),
+    .std::deque(fila duplamente encadeada|elemento pode ser retirado no 
+    final/início),
+    .std::forward list(lista encadeada),
+    .'associative container' é uma coleção de elementos não necessáriamente
+    indexados por um inteiro,
+    .suporta a recuperação eficiente dos elementos armazenados através de
+    chaves,
+    .Os contêineres associativos classificados são normalmente implementados usando
+    árvores red-black,
+    .contêineres associativos não ordenados são implementados usando tabelas de hash,
+    .Contêineres Ordenados/Desordenados:
+    .'equal_range()' retorna um intervalo contendo todos os elementos com a chave 
+    fornecida,
+    .utilizado em std::map e std::unordered_map,
+    .'operator[]/at()' retorna uma referência ao elemento com a chave especificada 
+    no contêiner,
+    .Um novo elemento é gerado caso a chave não seja encontrada,
+    .Contêineres Desordenados:
+    .'bucket_count()' retorna o número de compartimentos (buckets) no contêiner,
+    .'reserve()' ajusta o número de compartimentos para acomodar pelo menos uma 
+    quantidade específica de elementos e reorganiza o contêiner,
+    .'Container adaptors' são interfaces para reduzir o número de funcionalidades 
+    normalmente disponível em um contêiner,
+    .O contêiner subjacente de um adaptador de contêiner pode ser opcionalmente 
+    especificado no declaração,
+    .Exemplos: std::stack|std::queue|std::priority queue|,
+    .std::span  é uma exibição não proprietária de uma sequência subjacente,
+    .pode ser estático ou dinâmico,
+    .'Iteradores' podem ser customizados e possuir construtor/destruidor/operadores
+    booleanos/construtores,
+    .Isso oferece flexibilidade significativa na implementação de iteradores
+    adaptando-os às necessidades específicas do desenvolvedor,
+    .iteradores podem também ser classificados em diferentes categorias:
+    .Bidirectional Iterator que satisfaz Forward Iterator e é pré/pós-decrementável,
+    .Random Access Iterator que satisfaz Bidirectional Iterator e inclui operações 
+    de adição/subtração/comparações e indexação,
+    .as estrutura de um iterator se baseia na forma específica de interação com cada 
+    tipo de container e é parecida com a declaração de TADs em C,
+    .métodos úteis de iterators: 
+    .std::advance(InputIt& it, Distance n) incrementa um iterator em n elementos,
+    .std::next(ForwardIt it, Distance n) Retorna o n-ésimo sucessor do iterador,
+    .std::prev(BidirectionalIt it, Distance n) Retorna o n-ésimo predecessor do
+    iterador,
+    .std::distance(InputIt start, InputIt end) Retorna o número de elementos em um
+    determinado intervalo;
+========================================================================================
+    .biblioteca STL/algorithm: contém várias funções com diversos objetivos,
+    .'ranges' são abstrações que permitem operar elementos de uma estrutura de dados 
+    uniformes,
+    .é uma extensão aos iterators,
+    .contém begin()/retorna um iterator e end()
+    .Conceitos:
+    ."Range View" é um intervalo definido sobre outro intervalo|não possui nenhum dado,
+    ."Range Adaptors" são utilitários para transformar um intervalo em uma visão,
+    ."Range Factory" é uma visão que não contém elementos,
+    ."Range Algorithms" são funções fornecidas pela biblioteca que operam diretamente 
+    sobre intervalos,
+    ."Range Action" é um objeto que modifica os dados subjacentes de um intervalo;
+========================================================================================
+
+
+
