@@ -1,0 +1,7 @@
+all: 
+	gcc src/main.c Headers/LEA.h src/LEA.c 
+
+Linux:
+	./a.out
+Windows:
+	./a.exe
